@@ -10,14 +10,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late OnboardingItem onboardingItem;
-  late PageController pageController;
+  late PageController _pageController;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: PageView.builder(
       itemCount: onboardingItem.items.length,
-      controller: pageController,
+      controller: _pageController,
       itemBuilder: (context, index) {
         return Column(
           children: [
