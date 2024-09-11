@@ -2,7 +2,6 @@ class StringConst {
   static const appName = "Your_ToDo";
 
   // images string
-
   static const man = "assets/images/man.jpg";
   static const note = "assets/images/note.jpg";
   static const journal = "assets/images/journal.png";
