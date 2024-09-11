@@ -9,4 +9,9 @@ class StringConst {
 
   // svg string
   static const noteIcon = "assets/svg/IconNote.svg";
+
+// onboarding
+  static const onboardingEnabled =
+      'Clicking on the button will enable you on restart of the app to have a feel of the onboarding once more';
+  static const onboardingKey = "onboarding";
 }

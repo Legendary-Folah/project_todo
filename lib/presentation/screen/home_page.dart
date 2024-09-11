@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_todo/constants/colors/colors.dart';
+import 'package:project_todo/constants/string_const/string_const.dart';
 import 'package:project_todo/presentation/login_signup/login_signup.dart';
 import 'package:project_todo/presentation/onboarding/onboarding_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -128,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: TextButton(
         onPressed: () async {
           final pres = await SharedPreferences.getInstance();
-          pres.setBool('onboarding', true);
+          pres.setBool(StringConst.onboardingKey, true);
 
           if (!mounted) return;
           Navigator.pushReplacement(
