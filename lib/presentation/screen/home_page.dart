@@ -34,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 activeDotColor: ColorsConst.purple,
                 dotColor: ColorsConst.grey,
                 dotHeight: 8.0,
+                dotWidth: 20.0,
               ),
             ),
 
