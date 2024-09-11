@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/presentation/onboarding/onboarding_item.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -17,11 +18,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomSheet: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // skip
             TextButton(
               onPressed: () {},
               child: const Text('Skip'),
+            ),
+
+            // indicator
+            SmoothPageIndicator(
+              controller: _pageController,
+              count: onboardingItem.items.length,
+              effect: const ExpandingDotsEffect(
+                activeDotColor: ColorsConst.purple,
+                dotColor: ColorsConst.grey,
+                dotHeight: 8.0,
+              ),
             ),
 
             // next
