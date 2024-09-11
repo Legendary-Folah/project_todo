@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginSignup extends StatefulWidget {
   const LoginSignup({super.key});
@@ -10,12 +11,21 @@ class LoginSignup extends StatefulWidget {
 class _LoginSignupState extends State<LoginSignup> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
-          child: Center(
-        child: Text(
-          'Hello',
-        ),
+          child: Column(
+        children: [
+          Text('Hello there'),
+          Text('Hello there'),
+          Text('Hello there'),
+          Text('Hello there'),
+          TextButton(
+              onPressed: () async {
+                final prefs = await SharedPreferences.getInstance();
+                prefs.setBool('onboarding', false);
+              },
+              child: const Text("enable onboarding"))
+        ],
       )),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/presentation/login_signup/login_signup.dart';
 import 'package:project_todo/presentation/onboarding/onboarding_item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -125,7 +126,11 @@ class _MyHomePageState extends State<MyHomePage> {
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextButton(
-        onPressed: () {
+        onPressed: () async {
+          final pres = await SharedPreferences.getInstance();
+          pres.setBool('onboarding', true);
+
+          if (!mounted) return;
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
