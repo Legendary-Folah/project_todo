@@ -17,33 +17,53 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomSheet: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // skip
-            TextButton(
-              onPressed: () {},
-              child: const Text('Skip'),
-            ),
-
-            // indicator
-            SmoothPageIndicator(
-              controller: _pageController,
-              count: onboardingItem.items.length,
-              effect: const ExpandingDotsEffect(
-                activeDotColor: ColorsConst.purple,
-                dotColor: ColorsConst.grey,
-                dotHeight: 8.0,
-                dotWidth: 20.0,
+        bottomSheet: Container(
+          color: ColorsConst.white,
+          padding: const EdgeInsets.symmetric(
+            vertical: 8,
+            horizontal: 10,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // skip
+              TextButton(
+                onPressed: () {
+                  _pageController.jumpToPage(onboardingItem.items.length - 1);
+                },
+                child: const Text(
+                  'Skip',
+                  style: TextStyle(color: ColorsConst.purple),
+                ),
               ),
-            ),
 
-            // next
-            TextButton(
-              onPressed: () {},
-              child: const Text('Next'),
-            ),
-          ],
+              // indicator
+              SmoothPageIndicator(
+                controller: _pageController,
+                count: onboardingItem.items.length,
+                effect: const ExpandingDotsEffect(
+                  activeDotColor: ColorsConst.purple,
+                  dotColor: ColorsConst.grey,
+                  dotHeight: 8.0,
+                  dotWidth: 20.0,
+                ),
+              ),
+
+              // next
+              TextButton(
+                  onPressed: () {
+                    _pageController.nextPage(
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.easeInOut);
+                  },
+                  child: const Text(
+                    'Next',
+                    style: TextStyle(
+                      color: ColorsConst.purple,
+                    ),
+                  )),
+            ],
+          ),
         ),
         body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 15),
