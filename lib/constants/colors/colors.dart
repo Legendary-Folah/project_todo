@@ -1,0 +1,10 @@
+import 'package:flutter/material.dart';
+
+class ColorsConst {
+  ColorsConst._();
+
+  static const Color black = Colors.black;
+  static const Color white = Colors.white;
+  static const Color purple = Colors.purpleAccent;
+  static const Color grey = Colors.grey;
+}
