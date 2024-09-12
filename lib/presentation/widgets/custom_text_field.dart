@@ -8,12 +8,18 @@ class CustomTextField extends StatelessWidget {
     this.focusNode,
     required this.icon,
     required this.text,
+    this.suffixIcon,
+    required this.obscureText,
+    this.validator,
   });
 
   final TextEditingController controller;
   final FocusNode? focusNode;
   final Icon icon;
   final String text;
+  final IconButton? suffixIcon;
+  final bool obscureText;
+  final FormFieldValidator<String?>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +29,12 @@ class CustomTextField extends StatelessWidget {
         color: ColorsConst.white,
         borderRadius: BorderRadius.circular(15),
       ),
-      child: TextField(
+      child: TextFormField(
         controller: controller,
+        validator: validator,
         focusNode: focusNode,
+        obscureText: obscureText,
+        autocorrect: false,
         decoration: InputDecoration(
           prefixIcon: icon,
           hintText: text,
@@ -33,6 +42,7 @@ class CustomTextField extends StatelessWidget {
             horizontal: 15,
             vertical: 10,
           ),
+          suffixIcon: suffixIcon,
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: ColorsConst.grey,

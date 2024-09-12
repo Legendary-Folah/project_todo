@@ -16,8 +16,17 @@ class _LoginSignupState extends State<LoginSignup> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final focusNode1 = FocusNode();
   final focusNode2 = FocusNode();
+
+  bool isObscure = false;
+  void visible() {
+    setState(() {
+      isObscure = !isObscure;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +79,7 @@ class _LoginSignupState extends State<LoginSignup> {
                         ? ColorsConst.purple
                         : ColorsConst.grey),
                 text: 'Email',
+                obscureText: false,
               ),
               const SizedBox(height: 10),
               CustomTextField(
@@ -80,6 +90,16 @@ class _LoginSignupState extends State<LoginSignup> {
                         ? ColorsConst.purple
                         : ColorsConst.grey),
                 text: 'Password',
+                obscureText: isObscure ? false : true,
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    visible();
+                  },
+                  icon: const Icon(
+                    Icons.remove_red_eye,
+                    color: ColorsConst.grey,
+                  ),
+                ),
               ),
               const SizedBox(height: 10),
               Padding(

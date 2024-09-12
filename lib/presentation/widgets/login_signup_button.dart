@@ -23,6 +23,7 @@ class LoginSignUpButton extends StatelessWidget {
             style: const TextStyle(
               color: ColorsConst.white,
               fontSize: 16,
+              letterSpacing: 2.0,
             ),
           ),
         ),
