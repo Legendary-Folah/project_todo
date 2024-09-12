@@ -15,7 +15,10 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final bool onboarding;
-  const MyApp({super.key, this.onboarding = false});
+  const MyApp({
+    super.key,
+    this.onboarding = false,
+  });
 
   @override
   Widget build(BuildContext context) {

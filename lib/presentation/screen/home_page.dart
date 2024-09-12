@@ -64,13 +64,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   TextButton(
                       onPressed: () {
                         _pageController.nextPage(
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.bounceInOut,
+                        );
                       },
                       child: const Text(
                         'Next',
-                        style:
-                            TextStyle(color: ColorsConst.purple, fontSize: 14),
+                        style: TextStyle(
+                          color: ColorsConst.purple,
+                          fontSize: 14,
+                        ),
                       )),
                 ],
               ),
