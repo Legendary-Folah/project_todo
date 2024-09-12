@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/constants/string_const/string_const.dart';
 import 'package:project_todo/presentation/widgets/custom_text_field.dart';
+import 'package:project_todo/presentation/widgets/login_signup_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginSignup extends StatefulWidget {
@@ -22,7 +23,7 @@ class _LoginSignupState extends State<LoginSignup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorsConst.purple,
+        backgroundColor: ColorsConst.white,
         actions: [
           const SizedBox(
             width: 200,
@@ -30,7 +31,7 @@ class _LoginSignupState extends State<LoginSignup> {
               StringConst.onboardingEnabled,
               style: TextStyle(
                 fontSize: 10,
-                color: ColorsConst.white,
+                color: ColorsConst.black,
               ),
               textAlign: TextAlign.center,
             ),
@@ -42,7 +43,7 @@ class _LoginSignupState extends State<LoginSignup> {
             },
             icon: const Icon(
               Icons.restart_alt,
-              color: ColorsConst.white,
+              color: ColorsConst.purple,
             ),
           ),
         ],
@@ -51,14 +52,16 @@ class _LoginSignupState extends State<LoginSignup> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               Image.asset(
-                StringConst.note,
+                StringConst.journal,
                 width: 200,
-                height: 200,
+                height: 130,
+                fit: BoxFit.contain,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 40),
               CustomTextField(
                 controller: emailController,
                 focusNode: focusNode1,
@@ -68,7 +71,7 @@ class _LoginSignupState extends State<LoginSignup> {
                         : ColorsConst.grey),
                 text: 'Email',
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 10),
               CustomTextField(
                 controller: passwordController,
                 focusNode: focusNode2,
@@ -78,28 +81,38 @@ class _LoginSignupState extends State<LoginSignup> {
                         : ColorsConst.grey),
                 text: 'Password',
               ),
-              const SizedBox(height: 5),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Text(
-                    "Don't have an account yet ?",
-                    style: TextStyle(
-                      color: ColorsConst.black,
-                      fontSize: 14,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Text(
-                      'Sign Up',
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Text(
+                      "Don't have an account yet ?",
                       style: TextStyle(
+                        color: ColorsConst.black,
                         fontSize: 14,
-                        color: ColorsConst.purple,
                       ),
                     ),
-                  )
-                ],
+                    const SizedBox(width: 3),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: ColorsConst.purple,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const LoginSignUpButton(
+                text: 'Log In',
               )
             ],
           ),
