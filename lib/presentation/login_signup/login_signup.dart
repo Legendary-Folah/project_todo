@@ -97,7 +97,7 @@ class _LoginSignupState extends State<LoginSignup> {
                   return null;
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 15),
               CustomTextField(
                 controller: passwordController,
                 focusNode: focusNode2,
@@ -149,7 +149,7 @@ class _LoginSignupState extends State<LoginSignup> {
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               LoginSignUpButton(
                 text: 'Log In',
