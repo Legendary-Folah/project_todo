@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/constants/string_const/string_const.dart';
+import 'package:project_todo/constants/validation/form_validations.dart';
 import 'package:project_todo/presentation/widgets/custom_text_field.dart';
 import 'package:project_todo/presentation/widgets/login_signup_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,6 +26,17 @@ class _LoginSignupState extends State<LoginSignup> {
   void visible() {
     setState(() {
       isObscure = !isObscure;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    focusNode1.addListener(() {
+      setState(() {});
+    });
+    focusNode2.addListener(() {
+      setState(() {});
     });
   }
 
@@ -80,6 +92,10 @@ class _LoginSignupState extends State<LoginSignup> {
                         : ColorsConst.grey),
                 text: 'Email',
                 obscureText: false,
+                validator: (value) {
+                  FormValidations.validateEmailField(value);
+                  return null;
+                },
               ),
               const SizedBox(height: 10),
               CustomTextField(
@@ -100,6 +116,10 @@ class _LoginSignupState extends State<LoginSignup> {
                     color: ColorsConst.grey,
                   ),
                 ),
+                validator: (value) {
+                  FormValidations.validateRequiredField(value);
+                  return null;
+                },
               ),
               const SizedBox(height: 10),
               Padding(
@@ -131,9 +151,10 @@ class _LoginSignupState extends State<LoginSignup> {
               const SizedBox(
                 height: 10,
               ),
-              const LoginSignUpButton(
+              LoginSignUpButton(
                 text: 'Log In',
-              )
+                onPressed: () {},
+              ),
             ],
           ),
         ),
