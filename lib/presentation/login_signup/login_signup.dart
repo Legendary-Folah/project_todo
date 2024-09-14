@@ -152,7 +152,7 @@ class _LoginSignupState extends State<LoginSignup> {
                 height: 15,
               ),
               LoginSignUpButton(
-                text: 'Log In',
+                text: 'Login',
                 onPressed: () {},
               ),
             ],
