@@ -11,7 +11,7 @@ class FormValidations {
     bool emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
         .hasMatch(value ?? "");
     if (!emailValid) {
-      return 'Enter a valid email address.';
+      return 'Enter a valid email address';
     }
     return null;
   }
