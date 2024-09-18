@@ -6,14 +6,14 @@ import 'package:project_todo/presentation/widgets/custom_text_field.dart';
 import 'package:project_todo/presentation/widgets/login_signup_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginSignup extends StatefulWidget {
-  const LoginSignup({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<LoginSignup> createState() => _LoginSignupState();
+  State<Login> createState() => _LoginState();
 }
 
-class _LoginSignupState extends State<LoginSignup> {
+class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
