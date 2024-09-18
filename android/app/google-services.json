@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "583479868866",
+    "project_id": "your-todo-e6a24",
+    "storage_bucket": "your-todo-e6a24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583479868866:android:9ba969b139b503529f6a5b",
+        "android_client_info": {
+          "package_name": "com.yourTodo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdUr5Op3P3_aIudFis_SCtKUk4C-hcsPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
