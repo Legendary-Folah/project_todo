@@ -15,4 +15,12 @@ class FormValidations {
     }
     return null;
   }
+
+  static String? validatePasswordMatch(String? value, String correctPassword) {
+    if (value != correctPassword) {
+      return "Passwords do not match";
+    } else {
+      return null;
+    }
+  }
 }

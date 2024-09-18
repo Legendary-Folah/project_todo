@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/constants/string_const/string_const.dart';
-import 'package:project_todo/presentation/login/login.dart';
-import 'package:project_todo/presentation/onboarding/onboarding_item.dart';
+import 'package:project_todo/presentation/screen/login/login.dart';
+import 'package:project_todo/presentation/screen/onboarding/onboarding_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

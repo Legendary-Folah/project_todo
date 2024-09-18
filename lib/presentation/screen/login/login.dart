@@ -79,7 +79,7 @@ class _LoginState extends State<Login> {
               Image.asset(
                 StringConst.journal,
                 width: 200,
-                height: 130,
+                height: 180,
                 fit: BoxFit.contain,
               ),
               const SizedBox(height: 40),
@@ -97,7 +97,7 @@ class _LoginState extends State<Login> {
                   return null;
                 },
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 30),
               CustomTextField(
                 controller: passwordController,
                 focusNode: focusNode2,
@@ -142,6 +142,7 @@ class _LoginState extends State<Login> {
                         style: TextStyle(
                           fontSize: 14,
                           color: ColorsConst.purple,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     )

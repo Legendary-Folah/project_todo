@@ -1,5 +1,5 @@
 import 'package:project_todo/constants/string_const/string_const.dart';
-import 'package:project_todo/presentation/onboarding/onboarding_model.dart';
+import 'package:project_todo/presentation/screen/onboarding/onboarding_model.dart';
 
 class OnboardingItem {
   List<OnboardingModel> items = [
