@@ -52,17 +52,17 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         backgroundColor: ColorsConst.white,
         actions: [
-          const SizedBox(
-            width: 200,
-            child: Text(
-              StringConst.onboardingEnabled,
-              style: TextStyle(
-                fontSize: 10,
-                color: ColorsConst.black,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
+          // const SizedBox(
+          //   width: 200,
+          //   child: Text(
+          //     StringConst.onboardingEnabled,
+          //     style: TextStyle(
+          //       fontSize: 10,
+          //       color: ColorsConst.black,
+          //     ),
+          //     textAlign: TextAlign.center,
+          //   ),
+          // ),
           IconButton(
             onPressed: () async {
               final prefs = await SharedPreferences.getInstance();
@@ -117,8 +117,8 @@ class _LoginState extends State<Login> {
                   onPressed: () {
                     visible();
                   },
-                  icon: const Icon(
-                    Icons.remove_red_eye,
+                  icon: Icon(
+                    isObscure ? Icons.visibility_off : Icons.visibility,
                     color: ColorsConst.grey,
                   ),
                 ),

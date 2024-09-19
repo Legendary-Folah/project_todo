@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:project_todo/auth/auth.dart';
@@ -7,6 +8,7 @@ import 'package:project_todo/presentation/screen/home/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
   // await dotenv.load();
   final prefs = await SharedPreferences.getInstance();

@@ -123,31 +123,34 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget getStarted() {
-    return Container(
-      width: MediaQuery.of(context).size.width * .9,
-      height: 55,
-      decoration: BoxDecoration(
-        color: ColorsConst.purple,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: TextButton(
-        onPressed: () async {
-          final pres = await SharedPreferences.getInstance();
-          pres.setBool(StringConst.onboardingKey, true);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Container(
+        width: MediaQuery.of(context).size.width * .9,
+        height: 55,
+        decoration: BoxDecoration(
+          color: ColorsConst.purple,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: TextButton(
+          onPressed: () async {
+            final pres = await SharedPreferences.getInstance();
+            pres.setBool(StringConst.onboardingKey, true);
 
-          if (!mounted) return;
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AuthPage(),
+            if (!mounted) return;
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AuthPage(),
+              ),
+            );
+          },
+          child: const Text(
+            "Get Started",
+            style: TextStyle(
+              color: ColorsConst.white,
+              fontSize: 16,
             ),
-          );
-        },
-        child: const Text(
-          "Get Started",
-          style: TextStyle(
-            color: ColorsConst.white,
-            fontSize: 16,
           ),
         ),
       ),
