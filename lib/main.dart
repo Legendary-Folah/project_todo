@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:project_todo/auth/auth.dart';
 import 'package:project_todo/constants/string_const/string_const.dart';
 import 'package:project_todo/presentation/screen/login/login.dart';
 import 'package:project_todo/presentation/screen/home/home_page.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: onboarding ? const Login() : const MyHomePage(),
+      home: onboarding ? const AuthPage() : const MyHomePage(),
     );
   }
 }

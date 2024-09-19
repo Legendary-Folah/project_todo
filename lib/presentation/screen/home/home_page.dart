@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_todo/auth/auth.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/constants/string_const/string_const.dart';
 import 'package:project_todo/presentation/screen/login/login.dart';
@@ -138,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const Login(),
+              builder: (context) => const AuthPage(),
             ),
           );
         },

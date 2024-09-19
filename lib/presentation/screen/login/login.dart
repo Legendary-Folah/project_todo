@@ -7,7 +7,12 @@ import 'package:project_todo/presentation/widgets/login_signup_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({
+    super.key,
+    required this.showAuth,
+  });
+
+  final VoidCallback showAuth;
 
   @override
   State<Login> createState() => _LoginState();
@@ -43,6 +48,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsConst.white,
       appBar: AppBar(
         backgroundColor: ColorsConst.white,
         actions: [
@@ -121,7 +127,7 @@ class _LoginState extends State<Login> {
                   return null;
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
@@ -131,16 +137,16 @@ class _LoginState extends State<Login> {
                       "Don't have an account yet ?",
                       style: TextStyle(
                         color: ColorsConst.black,
-                        fontSize: 14,
+                        fontSize: 16,
                       ),
                     ),
                     const SizedBox(width: 3),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: widget.showAuth,
                       child: const Text(
                         'Sign Up',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 16,
                           color: ColorsConst.purple,
                           fontWeight: FontWeight.w500,
                         ),
@@ -150,7 +156,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 20,
               ),
               LoginSignUpButton(
                 text: 'Login',

@@ -7,7 +7,12 @@ import 'package:project_todo/presentation/widgets/login_signup_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+  const SignUp({
+    super.key,
+    required this.showAuth,
+  });
+
+  final VoidCallback showAuth;
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -48,6 +53,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsConst.white,
       appBar: AppBar(
         backgroundColor: ColorsConst.white,
         actions: [
@@ -102,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                   return null;
                 },
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 30),
               CustomTextField(
                 controller: passwordController,
                 focusNode: focusNode2,
@@ -127,7 +133,7 @@ class _SignUpState extends State<SignUp> {
                 },
               ),
               const SizedBox(
-                height: 15,
+                height: 30,
               ),
               CustomTextField(
                 controller: confirmPasswordController,
@@ -156,7 +162,7 @@ class _SignUpState extends State<SignUp> {
                       value, passwordController.text);
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
@@ -166,16 +172,16 @@ class _SignUpState extends State<SignUp> {
                       "Do you have an account ?",
                       style: TextStyle(
                         color: ColorsConst.black,
-                        fontSize: 14,
+                        fontSize: 16,
                       ),
                     ),
                     const SizedBox(width: 3),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: widget.showAuth,
                       child: const Text(
                         'Log In',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 16,
                           color: ColorsConst.purple,
                           fontWeight: FontWeight.w500,
                         ),
@@ -185,10 +191,10 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 20,
               ),
               LoginSignUpButton(
-                text: 'SignUp',
+                text: 'Sign Up',
                 onPressed: () {},
               ),
             ],
