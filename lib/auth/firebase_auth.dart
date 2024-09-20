@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_todo/presentation/widgets/flutter_toast.dart';
 
 abstract class FirebaseAuthDataSource {
   Future<void> registerUser(
@@ -23,9 +24,12 @@ class AuthRemote extends FirebaseAuthDataSource {
           email: email.trim(),
           password: password.trim(),
         );
+        CustomFlutterToast.successFlutterToast('Registered successfully');
+      } else {
+        CustomFlutterToast.errorFlutterToast('Passwords do not match');
       }
     } catch (e) {
-      Text(e.toString());
+      CustomFlutterToast.errorFlutterToast(e.toString());
     }
   }
 
@@ -36,8 +40,9 @@ class AuthRemote extends FirebaseAuthDataSource {
         email: email.trim(),
         password: password.trim(),
       );
+      CustomFlutterToast.successFlutterToast('Login successful');
     } catch (e) {
-      Text(e.toString());
+      CustomFlutterToast.errorFlutterToast(e.toString());
     }
   }
 }

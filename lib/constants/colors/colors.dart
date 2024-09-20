@@ -7,4 +7,6 @@ class ColorsConst {
   static const Color white = Colors.white;
   static const Color purple = Colors.purpleAccent;
   static const Color grey = Colors.grey;
+
+  static const Color error = Colors.red;
 }
