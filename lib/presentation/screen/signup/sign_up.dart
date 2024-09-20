@@ -32,12 +32,12 @@ class _SignUpState extends State<SignUp> {
   final focusNode2 = FocusNode();
   final focusNode3 = FocusNode();
 
+  bool loading = false;
+
   bool isObscure = false;
-  bool isObscure2 = false;
   void visible() {
     setState(() {
       isObscure = !isObscure;
-      isObscure2 = !isObscure2;
     });
   }
 
@@ -194,6 +194,10 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               const SizedBox(height: 20),
+              if (loading)
+                const CircularProgressIndicator(
+                  color: ColorsConst.purple,
+                ),
               LoginSignUpButton(
                 text: 'Sign Up',
                 onPressed: () {
@@ -209,14 +213,20 @@ class _SignUpState extends State<SignUp> {
 
   void _submitForm() {
     if (formKey.currentState?.validate() ?? false) {
+      setState(() {
+        loading = true;
+      });
       AuthRemote().registerUser(
         emailController.text,
         passwordController.text,
         confirmPasswordController.text,
       );
       Future.delayed(
-        const Duration(milliseconds: 2500),
+        const Duration(milliseconds: 3000),
         () {
+          setState(() {
+            loading = false;
+          });
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
