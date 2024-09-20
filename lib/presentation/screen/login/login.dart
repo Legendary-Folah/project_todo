@@ -156,16 +156,11 @@ class _LoginState extends State<Login> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               LoginSignUpButton(
                 text: 'Login',
                 onPressed: () {
-                  AuthRemote().logIn(
-                    emailController.text,
-                    passwordController.text,
-                  );
+                  _submitForm();
                 },
               ),
             ],
@@ -173,5 +168,27 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  void _submitForm() {
+    if (formKey.currentState?.validate() ?? false) {
+      AuthRemote().logIn(
+        emailController.text,
+        passwordController.text,
+      );
+      // Future.delayed(
+      //   const Duration(milliseconds: 2500),
+      //   () {
+      //     Navigator.pushReplacement(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) {
+      //           return const UserScreen();
+      //         },
+      //       ),
+      //     );
+      //   },
+      // );
+    }
   }
 }

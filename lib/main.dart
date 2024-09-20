@@ -1,10 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:project_todo/auth/auth.dart';
-import 'package:project_todo/auth/main_page.dart';
+import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/constants/string_const/string_const.dart';
-import 'package:project_todo/presentation/screen/login/login.dart';
+import 'package:project_todo/presentation/screen/details/user_screen.dart';
 import 'package:project_todo/presentation/screen/home/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,7 +30,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: onboarding ? const MainPage() : const MyHomePage(),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            if (snapshot.hasData) {
+              return const UserScreen();
+            } else {
+              return onboarding ? const AuthPage() : const MyHomePage();
+            }
+          } else {
+            return const CircularProgressIndicator(
+              color: ColorsConst.purple,
+            );
+          }
+        },
+      ),
     );
   }
 }
