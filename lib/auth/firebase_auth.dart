@@ -20,8 +20,8 @@ class AuthRemote extends FirebaseAuthDataSource {
     try {
       if (confirmPassword == password) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
+          email: email.trim(),
+          password: password.trim(),
         );
       }
     } catch (e) {
@@ -33,8 +33,8 @@ class AuthRemote extends FirebaseAuthDataSource {
   Future<void> logIn(String email, String password) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: email.trim(),
+        password: password.trim(),
       );
     } catch (e) {
       Text(e.toString());

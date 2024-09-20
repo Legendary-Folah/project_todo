@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_todo/auth/firebase_auth.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/constants/string_const/string_const.dart';
 import 'package:project_todo/constants/validation/form_validations.dart';
@@ -160,7 +161,12 @@ class _LoginState extends State<Login> {
               ),
               LoginSignUpButton(
                 text: 'Login',
-                onPressed: () {},
+                onPressed: () {
+                  AuthRemote().logIn(
+                    emailController.text,
+                    passwordController.text,
+                  );
+                },
               ),
             ],
           ),
