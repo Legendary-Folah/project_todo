@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_todo/auth/firebase_auth.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/constants/string_const/string_const.dart';
 import 'package:project_todo/constants/validation/form_validations.dart';
@@ -30,9 +31,11 @@ class _SignUpState extends State<SignUp> {
   final focusNode3 = FocusNode();
 
   bool isObscure = false;
+  bool isObscure2 = false;
   void visible() {
     setState(() {
       isObscure = !isObscure;
+      isObscure2 = !isObscure2;
     });
   }
 
@@ -191,7 +194,19 @@ class _SignUpState extends State<SignUp> {
               const SizedBox(height: 20),
               LoginSignUpButton(
                 text: 'Sign Up',
-                onPressed: () {},
+                onPressed: () {
+                  AuthRemote().registerUser(
+                    emailController.text,
+                    passwordController.text,
+                    confirmPasswordController.text,
+                  );
+                  emailController.clear();
+                  passwordController.clear();
+                  confirmPasswordController.clear();
+                  print(emailController);
+                  print(passwordController);
+                  print(confirmPasswordController);
+                },
               ),
             ],
           ),

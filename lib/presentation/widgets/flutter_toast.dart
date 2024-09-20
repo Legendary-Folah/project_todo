@@ -8,9 +8,9 @@ class CustomFlutterToast {
     return await Fluttertoast.showToast(
       msg: msg,
       toastLength: Toast.LENGTH_SHORT,
-      backgroundColor: ColorsConst.purple,
+      backgroundColor: ColorsConst.black,
       textColor: ColorsConst.white,
-      gravity: ToastGravity.BOTTOM,
+      gravity: ToastGravity.CENTER,
     );
   }
 
