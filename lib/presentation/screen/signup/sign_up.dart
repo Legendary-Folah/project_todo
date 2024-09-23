@@ -82,126 +82,122 @@ class _SignUpState extends State<SignUp> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20),
-              Image.asset(
-                StringConst.journal,
-                width: 200,
-                height: 180,
-                fit: BoxFit.contain,
-              ),
-              const SizedBox(height: 40),
-              CustomTextField(
-                controller: emailController,
-                focusNode: focusNode1,
-                keyboardType: TextInputType.emailAddress,
-                icon: Icon(Icons.email,
-                    color: focusNode1.hasFocus
-                        ? ColorsConst.purple
-                        : ColorsConst.grey),
-                text: 'Email',
-                obscureText: false,
-                validator: (value) {
-                  FormValidations.validateEmailField(value);
-                  return null;
-                },
-              ),
-              const SizedBox(height: 30),
-              CustomTextField(
-                controller: passwordController,
-                focusNode: focusNode2,
-                icon: Icon(Icons.password,
-                    color: focusNode2.hasFocus
-                        ? ColorsConst.purple
-                        : ColorsConst.grey),
-                text: 'Password',
-                obscureText: isObscure ? false : true,
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    visible();
-                  },
-                  icon: Icon(
-                    isObscure ? Icons.visibility_off : Icons.visibility,
-                    color: ColorsConst.grey,
-                  ),
+        child: Form(
+          key: formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 20),
+                Image.asset(
+                  StringConst.journal,
+                  width: 200,
+                  height: 180,
+                  fit: BoxFit.contain,
                 ),
-                validator: (value) {
-                  FormValidations.validateRequiredField(value);
-                  return null;
-                },
-              ),
-              const SizedBox(height: 30),
-              CustomTextField2(
-                controller: confirmPasswordController,
-                focusNode: focusNode3,
-                icon: Icon(Icons.password,
-                    color: focusNode3.hasFocus
-                        ? ColorsConst.purple
-                        : ColorsConst.grey),
-                text: 'Confirm Password',
-                obscureText: isObscure2 ? false : true,
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    visible();
+                const SizedBox(height: 40),
+                CustomTextField(
+                  controller: emailController,
+                  focusNode: focusNode1,
+                  keyboardType: TextInputType.emailAddress,
+                  icon: Icon(Icons.email,
+                      color: focusNode1.hasFocus
+                          ? ColorsConst.purple
+                          : ColorsConst.grey),
+                  text: 'Email',
+                  obscureText: false,
+                  validator: (value) {
+                    return FormValidations.validateEmailField(value);
                   },
-                  icon: Icon(
-                    isObscure2 ? Icons.visibility_off : Icons.visibility,
-                    color: ColorsConst.grey,
-                  ),
                 ),
-                validator: (value) {
-                  String? requiredFieldError =
-                      FormValidations.validateRequiredField(value);
-                  if (requiredFieldError != null) return requiredFieldError;
-
-                  return FormValidations.validatePasswordMatch(
-                      value, passwordController.text);
-                },
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Text(
-                      "Do you have an account ?",
-                      style: TextStyle(
-                        color: ColorsConst.black,
-                        fontSize: 16,
-                      ),
+                const SizedBox(height: 30),
+                CustomTextField(
+                  controller: passwordController,
+                  focusNode: focusNode2,
+                  icon: Icon(Icons.password,
+                      color: focusNode2.hasFocus
+                          ? ColorsConst.purple
+                          : ColorsConst.grey),
+                  text: 'Password',
+                  obscureText: isObscure ? false : true,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      visible();
+                    },
+                    icon: Icon(
+                      isObscure ? Icons.visibility_off : Icons.visibility,
+                      color: ColorsConst.grey,
                     ),
-                    const SizedBox(width: 3),
-                    GestureDetector(
-                      onTap: widget.showAuth,
-                      child: const Text(
-                        'Log In',
+                  ),
+                  validator: (value) =>
+                      FormValidations.validateRequiredField(value),
+                ),
+                const SizedBox(height: 30),
+                CustomTextField2(
+                  controller: confirmPasswordController,
+                  focusNode: focusNode3,
+                  icon: Icon(Icons.password,
+                      color: focusNode3.hasFocus
+                          ? ColorsConst.purple
+                          : ColorsConst.grey),
+                  text: 'Confirm Password',
+                  obscureText: isObscure2 ? false : true,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      visible2();
+                    },
+                    icon: Icon(
+                      isObscure2 ? Icons.visibility_off : Icons.visibility,
+                      color: ColorsConst.grey,
+                    ),
+                  ),
+                  validator: (value) {
+                    String? requiredFieldError =
+                        FormValidations.validateRequiredField(value);
+                    if (requiredFieldError != null) return requiredFieldError;
+
+                    return FormValidations.validatePasswordMatch(
+                        value, passwordController.text);
+                  },
+                ),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text(
+                        "Do you have an account ?",
                         style: TextStyle(
+                          color: ColorsConst.black,
                           fontSize: 16,
-                          color: ColorsConst.purple,
-                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                    )
-                  ],
+                      const SizedBox(width: 3),
+                      GestureDetector(
+                        onTap: widget.showAuth,
+                        child: const Text(
+                          'Log In',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: ColorsConst.purple,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              if (loading)
-                const CircularProgressIndicator(
-                  color: ColorsConst.purple,
+                const SizedBox(height: 20),
+                LoginSignUpButton(
+                  text: 'Sign Up',
+                  onPressed: () {
+                    _submitForm();
+                  },
                 ),
-              LoginSignUpButton(
-                text: 'Sign Up',
-                onPressed: () {
-                  _submitForm();
-                },
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -210,32 +206,26 @@ class _SignUpState extends State<SignUp> {
 
   void _submitForm() {
     if (formKey.currentState?.validate() ?? false) {
-      setState(() {
-        loading = true;
-      });
       AuthRemote().registerUser(
         emailController.text,
         passwordController.text,
         confirmPasswordController.text,
       );
       Future.delayed(
-        const Duration(milliseconds: 3000),
+        const Duration(seconds: 3),
         () {
-          setState(() {
-            loading = false;
-          });
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return UserScreen(
-                    // user: emailController.text,
-                    );
+                return const UserScreen();
               },
             ),
           );
         },
       );
+    } else {
+      debugPrint("Not a valid form");
     }
   }
 }

@@ -68,95 +68,96 @@ class _LoginState extends State<Login> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20),
-              Image.asset(
-                StringConst.journal,
-                width: 200,
-                height: 180,
-                fit: BoxFit.contain,
-              ),
-              const SizedBox(height: 40),
-              CustomTextField(
-                controller: emailController,
-                focusNode: focusNode1,
-                keyboardType: TextInputType.emailAddress,
-                icon: Icon(Icons.email,
-                    color: focusNode1.hasFocus
-                        ? ColorsConst.purple
-                        : ColorsConst.grey),
-                text: 'Email',
-                obscureText: false,
-                validator: (value) {
-                  FormValidations.validateEmailField(value);
-                  return null;
-                },
-              ),
-              const SizedBox(height: 30),
-              CustomTextField(
-                controller: passwordController,
-                focusNode: focusNode2,
-                keyboardType: TextInputType.visiblePassword,
-                icon: Icon(Icons.password,
-                    color: focusNode2.hasFocus
-                        ? ColorsConst.purple
-                        : ColorsConst.grey),
-                text: 'Password',
-                obscureText: isObscure ? false : true,
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    visible();
-                  },
-                  icon: Icon(
-                    isObscure ? Icons.visibility_off : Icons.visibility,
-                    color: ColorsConst.grey,
-                  ),
+        child: Form(
+          key: formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 20),
+                Image.asset(
+                  StringConst.journal,
+                  width: 200,
+                  height: 180,
+                  fit: BoxFit.contain,
                 ),
-                validator: (value) {
-                  FormValidations.validateRequiredField(value);
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Text(
-                      "Don't have an account yet ?",
-                      style: TextStyle(
-                        color: ColorsConst.black,
-                        fontSize: 16,
-                      ),
+                const SizedBox(height: 40),
+                CustomTextField(
+                  controller: emailController,
+                  focusNode: focusNode1,
+                  keyboardType: TextInputType.emailAddress,
+                  icon: Icon(Icons.email,
+                      color: focusNode1.hasFocus
+                          ? ColorsConst.purple
+                          : ColorsConst.grey),
+                  text: 'Email',
+                  obscureText: false,
+                  validator: (value) {
+                    return FormValidations.validateEmailField(value);
+                  },
+                ),
+                const SizedBox(height: 30),
+                CustomTextField(
+                  controller: passwordController,
+                  focusNode: focusNode2,
+                  keyboardType: TextInputType.visiblePassword,
+                  icon: Icon(Icons.password,
+                      color: focusNode2.hasFocus
+                          ? ColorsConst.purple
+                          : ColorsConst.grey),
+                  text: 'Password',
+                  obscureText: isObscure ? false : true,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      visible();
+                    },
+                    icon: Icon(
+                      isObscure ? Icons.visibility_off : Icons.visibility,
+                      color: ColorsConst.grey,
                     ),
-                    const SizedBox(width: 3),
-                    GestureDetector(
-                      onTap: widget.showAuth,
-                      child: const Text(
-                        'Sign Up',
+                  ),
+                  validator: (value) {
+                    return FormValidations.validateRequiredField(value);
+                  },
+                ),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text(
+                        "Don't have an account yet ?",
                         style: TextStyle(
-                          fontSize: 30,
-                          color: ColorsConst.purple,
-                          fontWeight: FontWeight.w500,
+                          color: ColorsConst.black,
+                          fontSize: 16,
                         ),
                       ),
-                    )
-                  ],
+                      const SizedBox(width: 3),
+                      GestureDetector(
+                        onTap: widget.showAuth,
+                        child: const Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: ColorsConst.purple,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              LoginSignUpButton(
-                text: 'Login',
-                onPressed: () {
-                  _submitForm();
-                },
-              ),
-            ],
+                const SizedBox(height: 20),
+                LoginSignUpButton(
+                  text: 'Login',
+                  onPressed: () {
+                    _submitForm();
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -169,19 +170,19 @@ class _LoginState extends State<Login> {
         emailController.text,
         passwordController.text,
       );
-      Future.delayed(
-        const Duration(milliseconds: 2500),
-        () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return const UserScreen();
-              },
-            ),
-          );
-        },
-      );
+      // Future.delayed(
+      //   const Duration(milliseconds: 2500),
+      //   () {
+      //     Navigator.pushReplacement(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) {
+      //           return const UserScreen();
+      //         },
+      //       ),
+      //     );
+      //   },
+      // );
     }
   }
 }

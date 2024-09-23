@@ -9,4 +9,5 @@ class ColorsConst {
   static const Color grey = Colors.grey;
 
   static const Color error = Colors.red;
+  static const Color background = Colors.grey;
 }
