@@ -55,17 +55,6 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         backgroundColor: ColorsConst.white,
         actions: [
-          // const SizedBox(
-          //   width: 200,
-          //   child: Text(
-          //     StringConst.onboardingEnabled,
-          //     style: TextStyle(
-          //       fontSize: 10,
-          //       color: ColorsConst.black,
-          //     ),
-          //     textAlign: TextAlign.center,
-          //   ),
-          // ),
           IconButton(
             onPressed: () async {
               final prefs = await SharedPreferences.getInstance();

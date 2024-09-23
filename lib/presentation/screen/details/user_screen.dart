@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class UserScreen extends StatefulWidget {
-  const UserScreen({super.key, this.user});
+  const UserScreen({
+    super.key,
+    // this.user,
+  });
 
-  final String? user;
+  // final String? user;
 
   @override
   State<UserScreen> createState() => _UserScreenState();
@@ -14,7 +17,7 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Hello ${widget.user!}'),
+        child: Text('Hello'),
       ),
     );
   }

@@ -35,9 +35,16 @@ class _SignUpState extends State<SignUp> {
   bool loading = false;
 
   bool isObscure = false;
+  bool isObscure2 = false;
   void visible() {
     setState(() {
       isObscure = !isObscure;
+    });
+  }
+
+  void visible2() {
+    setState(() {
+      isObscure2 = !isObscure2;
     });
   }
 
@@ -62,17 +69,6 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         backgroundColor: ColorsConst.white,
         actions: [
-          // const SizedBox(
-          //   width: 200,
-          //   child: Text(
-          //     StringConst.onboardingEnabled,
-          //     style: TextStyle(
-          //       fontSize: 10,
-          //       color: ColorsConst.black,
-          //     ),
-          //     textAlign: TextAlign.center,
-          //   ),
-          // ),
           IconButton(
             onPressed: () async {
               final prefs = await SharedPreferences.getInstance();
@@ -147,13 +143,13 @@ class _SignUpState extends State<SignUp> {
                         ? ColorsConst.purple
                         : ColorsConst.grey),
                 text: 'Confirm Password',
-                obscureText: isObscure ? false : true,
+                obscureText: isObscure2 ? false : true,
                 suffixIcon: IconButton(
                   onPressed: () {
                     visible();
                   },
                   icon: Icon(
-                    isObscure ? Icons.visibility_off : Icons.visibility,
+                    isObscure2 ? Icons.visibility_off : Icons.visibility,
                     color: ColorsConst.grey,
                   ),
                 ),
@@ -233,8 +229,8 @@ class _SignUpState extends State<SignUp> {
             MaterialPageRoute(
               builder: (context) {
                 return UserScreen(
-                  user: emailController.text,
-                );
+                    // user: emailController.text,
+                    );
               },
             ),
           );
