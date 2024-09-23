@@ -102,6 +102,7 @@ class _SignUpState extends State<SignUp> {
               CustomTextField(
                 controller: emailController,
                 focusNode: focusNode1,
+                keyboardType: TextInputType.emailAddress,
                 icon: Icon(Icons.email,
                     color: focusNode1.hasFocus
                         ? ColorsConst.purple

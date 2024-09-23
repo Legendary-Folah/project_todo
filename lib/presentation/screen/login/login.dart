@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:project_todo/auth/firebase_auth.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/constants/string_const/string_const.dart';
 import 'package:project_todo/constants/validation/form_validations.dart';
+import 'package:project_todo/presentation/screen/details/user_screen.dart';
 import 'package:project_todo/presentation/widgets/custom_text_field.dart';
 import 'package:project_todo/presentation/widgets/login_signup_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -93,6 +95,7 @@ class _LoginState extends State<Login> {
               CustomTextField(
                 controller: emailController,
                 focusNode: focusNode1,
+                keyboardType: TextInputType.emailAddress,
                 icon: Icon(Icons.email,
                     color: focusNode1.hasFocus
                         ? ColorsConst.purple
@@ -108,6 +111,7 @@ class _LoginState extends State<Login> {
               CustomTextField(
                 controller: passwordController,
                 focusNode: focusNode2,
+                keyboardType: TextInputType.visiblePassword,
                 icon: Icon(Icons.password,
                     color: focusNode2.hasFocus
                         ? ColorsConst.purple
@@ -176,19 +180,19 @@ class _LoginState extends State<Login> {
         emailController.text,
         passwordController.text,
       );
-      // Future.delayed(
-      //   const Duration(milliseconds: 2500),
-      //   () {
-      //     Navigator.pushReplacement(
-      //       context,
-      //       MaterialPageRoute(
-      //         builder: (context) {
-      //           return const UserScreen();
-      //         },
-      //       ),
-      //     );
-      //   },
-      // );
+      Future.delayed(
+        const Duration(milliseconds: 2500),
+        () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const UserScreen();
+              },
+            ),
+          );
+        },
+      );
     }
   }
 }

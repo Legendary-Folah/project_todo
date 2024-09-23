@@ -136,7 +136,6 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () async {
             final pres = await SharedPreferences.getInstance();
             pres.setBool(StringConst.onboardingKey, true);
-
             if (!mounted) return;
             Navigator.pushReplacement(
               context,
