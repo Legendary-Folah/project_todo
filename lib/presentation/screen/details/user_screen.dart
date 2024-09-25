@@ -14,6 +14,7 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsConst.background,
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: ColorsConst.purple,
