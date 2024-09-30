@@ -15,6 +15,7 @@ class _TaskWidgetState extends State<TaskWidget> {
       backgroundColor: ColorsConst.white,
       body: SafeArea(
           child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         height: 100,
         width: double.infinity,
         decoration: BoxDecoration(
