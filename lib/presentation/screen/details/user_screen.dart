@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_todo/constants/colors/colors.dart';
+import 'package:project_todo/presentation/widgets/task_widget.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({
@@ -14,21 +15,16 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsConst.background,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: ColorsConst.purple,
-        child: const Icon(
-          Icons.add,
-          size: 30,
-          color: ColorsConst.white,
+        backgroundColor: Colors.grey.shade100,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: ColorsConst.purple,
+          child: const Icon(
+            Icons.add,
+            size: 30,
+            color: ColorsConst.white,
+          ),
         ),
-      ),
-      body: const Center(
-        child: Text(
-          'Hello',
-        ),
-      ),
-    );
+        body: TaskWidget());
   }
 }
