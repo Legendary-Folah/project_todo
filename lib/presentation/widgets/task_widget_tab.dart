@@ -16,7 +16,7 @@ class TaskWidgetTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
-        height: 25,
+        height: 28,
         width: 80,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
