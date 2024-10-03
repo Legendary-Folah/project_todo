@@ -19,6 +19,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   firebase_auth: ^5.3.0
   fluttertoast: ^8.2.8
+  msh_checkbox: ^2.0.1
 
 dev_dependencies:
   flutter_test:

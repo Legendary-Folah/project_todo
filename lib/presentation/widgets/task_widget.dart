@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/presentation/widgets/task_widget_tab.dart';
 
@@ -10,6 +11,7 @@ class TaskWidget extends StatefulWidget {
 }
 
 class _TaskWidgetState extends State<TaskWidget> {
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,7 +26,7 @@ class _TaskWidgetState extends State<TaskWidget> {
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.3),
-                  spreadRadius: 6,
+                  spreadRadius: 7,
                   blurRadius: 8,
                 )
               ]),
@@ -48,52 +50,68 @@ class _TaskWidgetState extends State<TaskWidget> {
                 ),
               ),
               const SizedBox(width: 15),
-              Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 15),
-                      const Text(
-                        'ToDo',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: ColorsConst.black,
-                          fontSize: 18,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        'subtitle',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey.shade400,
-                          fontSize: 14,
-                        ),
-                      ),
-                      const Spacer(),
-                      const Row(
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TaskWidgetTab(
-                            text: 'Time',
-                            icon: Icon(
-                              Icons.timelapse,
-                              color: ColorsConst.white,
+                          const Text(
+                            'ToDo',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: ColorsConst.black,
+                              fontSize: 18,
                             ),
                           ),
-                          SizedBox(width: 5),
-                          TaskWidgetTab(
-                            text: 'edit',
-                            icon: Icon(
-                              Icons.edit,
-                              color: ColorsConst.white,
-                            ),
+                          MSHCheckbox(
+                            size: 20,
+                            style: MSHCheckboxStyle.stroke,
+                            value: isChecked,
+                            onChanged: (selected) {
+                              setState(() {
+                                isChecked = selected;
+                              });
+                            },
                           )
                         ],
-                      )
-                    ],
-                  )
-                ],
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      'subtitle',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade400,
+                        fontSize: 14,
+                      ),
+                    ),
+                    const Spacer(),
+                    const Row(
+                      children: [
+                        TaskWidgetTab(
+                          text: 'Time',
+                          icon: Icon(
+                            Icons.timelapse,
+                            color: ColorsConst.white,
+                          ),
+                        ),
+                        SizedBox(width: 5),
+                        TaskWidgetTab(
+                          text: 'edit',
+                          icon: Icon(
+                            Icons.edit,
+                            color: ColorsConst.white,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               )
             ],
           ),
