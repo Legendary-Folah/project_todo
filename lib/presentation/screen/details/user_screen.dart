@@ -15,16 +15,22 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey.shade100,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: ColorsConst.purple,
-          child: const Icon(
-            Icons.add,
-            size: 30,
-            color: ColorsConst.white,
-          ),
+      backgroundColor: Colors.grey.shade100,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: ColorsConst.purple,
+        child: const Icon(
+          Icons.add,
+          size: 30,
+          color: ColorsConst.white,
         ),
-        body: const TaskWidget());
+      ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (builder, context) {
+          return const TaskWidget();
+        },
+      ),
+    );
   }
 }
