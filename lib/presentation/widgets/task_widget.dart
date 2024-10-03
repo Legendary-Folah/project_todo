@@ -14,19 +14,27 @@ class _TaskWidgetState extends State<TaskWidget> {
     return Scaffold(
       backgroundColor: ColorsConst.white,
       body: SafeArea(
-          child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-        height: 100,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: const Row(
-          children: [
-            Text(
-              'Hello',
-            )
-          ],
+          child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        child: Container(
+          height: 100,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3),
+                  spreadRadius: 6,
+                  blurRadius: 8,
+                )
+              ]),
+          child: const Row(
+            children: [
+              Text(
+                'Hello',
+              )
+            ],
+          ),
         ),
       )),
     );
