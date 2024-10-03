@@ -25,6 +25,6 @@ class _UserScreenState extends State<UserScreen> {
             color: ColorsConst.white,
           ),
         ),
-        body: TaskWidget());
+        body: const TaskWidget());
   }
 }
