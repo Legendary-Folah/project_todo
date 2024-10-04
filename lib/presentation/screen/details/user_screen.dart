@@ -12,6 +12,7 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
+  bool show = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,11 +26,13 @@ class _UserScreenState extends State<UserScreen> {
           color: ColorsConst.white,
         ),
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (builder, context) {
-          return const TaskWidget();
-        },
+      body: NotificationListener<UserScrollNotification>(
+        child: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (builder, context) {
+            return const TaskWidget();
+          },
+        ),
       ),
     );
   }
