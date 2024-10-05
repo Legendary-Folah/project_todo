@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/presentation/widgets/task_widget.dart';
 
@@ -17,16 +18,32 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: ColorsConst.purple,
-        child: const Icon(
-          Icons.add,
-          size: 30,
-          color: ColorsConst.white,
+      floatingActionButton: Visibility(
+        visible: show,
+        child: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: ColorsConst.purple,
+          child: const Icon(
+            Icons.add,
+            size: 30,
+            color: ColorsConst.white,
+          ),
         ),
       ),
       body: NotificationListener<UserScrollNotification>(
+        onNotification: (notification) {
+          if (notification.direction == ScrollDirection.forward) {
+            setState(() {
+              show = true;
+            });
+          }
+          if (notification.direction == ScrollDirection.reverse) {
+            setState(() {
+              show = false;
+            });
+          }
+          return true;
+        },
         child: ListView.builder(
           itemCount: 10,
           itemBuilder: (builder, context) {
