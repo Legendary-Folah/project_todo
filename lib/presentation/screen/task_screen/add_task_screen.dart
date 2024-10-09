@@ -10,6 +10,12 @@ class AddTaskScreen extends StatefulWidget {
 class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.grey.shade100,
+      body: const SafeArea(
+          child: Column(
+        children: [],
+      )),
+    );
   }
 }
