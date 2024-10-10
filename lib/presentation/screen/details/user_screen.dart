@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project_todo/constants/colors/colors.dart';
+import 'package:project_todo/presentation/screen/task_screen/add_task_screen.dart';
 import 'package:project_todo/presentation/widgets/task_widget.dart';
 
 class UserScreen extends StatefulWidget {
@@ -21,7 +22,16 @@ class _UserScreenState extends State<UserScreen> {
       floatingActionButton: Visibility(
         visible: show,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const AddTaskScreen();
+                },
+              ),
+            );
+          },
           backgroundColor: ColorsConst.purple,
           child: const Icon(
             Icons.add,

@@ -23,6 +23,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       backgroundColor: Colors.grey.shade100,
       body: SafeArea(
           child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AddTaskTextField(
             controller: titleController,
@@ -37,7 +38,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             maxLines: 3,
           ),
           const SizedBox(height: 18),
-          Container(
+          SizedBox(
             height: 150,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -71,6 +72,48 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     ),
                   );
                 }),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                    ColorsConst.customGreen,
+                  ),
+                  minimumSize: WidgetStatePropertyAll(
+                    Size(170, 45),
+                  ),
+                ),
+                onPressed: () {},
+                child: const Text(
+                  "Add Task",
+                  style: TextStyle(
+                    color: ColorsConst.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                    ColorsConst.error,
+                  ),
+                  minimumSize: WidgetStatePropertyAll(
+                    Size(170, 45),
+                  ),
+                ),
+                onPressed: () {},
+                child: const Text(
+                  "Cancel",
+                  style: TextStyle(
+                    color: ColorsConst.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ],
           )
         ],
       )),
