@@ -86,7 +86,9 @@ class _AddTaskScreenState extends State<EditScreen> {
                     Size(170, 45),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context);
+                },
                 child: const Text(
                   "Add Task",
                   style: TextStyle(
@@ -104,7 +106,9 @@ class _AddTaskScreenState extends State<EditScreen> {
                     Size(170, 45),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context);
+                },
                 child: const Text(
                   "Cancel",
                   style: TextStyle(
