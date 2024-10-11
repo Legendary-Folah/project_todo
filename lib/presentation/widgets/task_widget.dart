@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:project_todo/constants/colors/colors.dart';
+import 'package:project_todo/presentation/screen/edit_screen/edit_screen.dart';
 import 'package:project_todo/presentation/widgets/task_widget_tab.dart';
 
 class TaskWidget extends StatefulWidget {
@@ -91,21 +92,36 @@ class _TaskWidgetState extends State<TaskWidget> {
                       ),
                     ),
                     const Spacer(),
-                    const Row(
+                    Row(
                       children: [
-                        TaskWidgetTab(
-                          text: 'Time',
-                          icon: Icon(
-                            Icons.timelapse,
-                            color: ColorsConst.white,
+                        GestureDetector(
+                          onTap: () {},
+                          child: const TaskWidgetTab(
+                            text: 'Time',
+                            icon: Icon(
+                              Icons.timelapse,
+                              color: ColorsConst.white,
+                            ),
                           ),
                         ),
-                        SizedBox(width: 5),
-                        TaskWidgetTab(
-                          text: 'edit',
-                          icon: Icon(
-                            Icons.edit,
-                            color: ColorsConst.white,
+                        const SizedBox(width: 5),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const EditScreen();
+                                },
+                              ),
+                            );
+                          },
+                          child: const TaskWidgetTab(
+                            text: 'edit',
+                            icon: Icon(
+                              Icons.edit,
+                              color: ColorsConst.white,
+                            ),
                           ),
                         )
                       ],
