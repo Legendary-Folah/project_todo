@@ -90,7 +90,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     Navigator.of(context);
                   },
                   child: const Text(
-                    "Add Task",
+                    "Add Taskk",
                     style: TextStyle(
                       color: ColorsConst.white,
                       fontSize: 18,
