@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:project_todo/firebase/firebase_service.dart';
 import 'package:project_todo/presentation/widgets/flutter_toast.dart';
 
 abstract class FirebaseAuthDataSource {
@@ -19,10 +20,14 @@ class AuthRemote extends FirebaseAuthDataSource {
       String email, String password, String confirmPassword) async {
     try {
       if (confirmPassword == password) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
           email: email.trim(),
           password: password.trim(),
-        );
+        )
+            .then((value) {
+          FirestoreDataSource().createUser(email);
+        });
         CustomFlutterToast.successFlutterToast('Registered successfully');
       } else {
         CustomFlutterToast.errorFlutterToast('Passwords do not match');
