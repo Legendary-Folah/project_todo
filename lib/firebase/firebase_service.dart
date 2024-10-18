@@ -11,6 +11,7 @@ class FirestoreDataSource {
           .collection('users')
           .doc(_auth.currentUser!.uid)
           .set({'id': _auth.currentUser!.uid, "email": email});
+      print('Email: $email');
       return true;
     } catch (e) {
       return true;
