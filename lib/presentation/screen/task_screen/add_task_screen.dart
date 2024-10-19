@@ -40,7 +40,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             ),
             const SizedBox(height: 18),
             SizedBox(
-              height: 150,
+              height: 140,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: "assets/images/".length,
@@ -52,7 +52,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         });
                       },
                       child: Container(
-                        width: 180,
+                        width: 160,
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),

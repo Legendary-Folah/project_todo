@@ -33,7 +33,7 @@ class TaskWidgetTab extends StatelessWidget {
               Text(
                 text,
                 style: const TextStyle(
-                  fontSize: 12,
+                  fontSize: 11,
                   color: ColorsConst.white,
                 ),
               ),
