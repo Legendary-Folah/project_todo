@@ -21,6 +21,7 @@ dependencies:
   fluttertoast: ^8.2.8
   msh_checkbox: ^2.0.1
   cloud_firestore: ^5.4.4
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:
