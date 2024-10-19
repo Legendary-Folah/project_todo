@@ -23,7 +23,19 @@ class FirestoreDataSource {
     try {
       final uuid = const Uuid().v4();
       final date = DateTime.now();
-
+      await _firestore
+          .collection('users')
+          .doc(_auth.currentUser!.uid)
+          .collection('notes')
+          .doc(uuid)
+          .set({
+        'id': _auth.currentUser!.uid,
+        'subtitle': subTitle,
+        'isDOne': false,
+        'image': image,
+        'time': date,
+        "title": title
+      });
       return true;
     } catch (e) {
       return true;

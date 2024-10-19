@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_todo/constants/colors/colors.dart';
+import 'package:project_todo/firebase/firebase_service.dart';
 import 'package:project_todo/presentation/widgets/add_task_text_field.dart';
 
 class AddTaskScreen extends StatefulWidget {
@@ -87,6 +88,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     ),
                   ),
                   onPressed: () {
+                    FirestoreDataSource().addNote(
+                      titleController.text,
+                      subTitleController.text,
+                      indexx,
+                    );
                     Navigator.of(context);
                   },
                   child: const Text(
