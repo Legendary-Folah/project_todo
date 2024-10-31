@@ -74,7 +74,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     );
                   }),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -84,7 +84,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       ColorsConst.customGreen,
                     ),
                     minimumSize: WidgetStatePropertyAll(
-                      Size(170, 45),
+                      Size(165, 40),
                     ),
                   ),
                   onPressed: () {
@@ -109,7 +109,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       ColorsConst.error,
                     ),
                     minimumSize: WidgetStatePropertyAll(
-                      Size(170, 45),
+                      Size(165, 40),
                     ),
                   ),
                   onPressed: () {
