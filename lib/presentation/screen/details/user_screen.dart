@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project_todo/constants/colors/colors.dart';
+import 'package:project_todo/firebase/firebase_service.dart';
 import 'package:project_todo/presentation/screen/task_screen/add_task_screen.dart';
 import 'package:project_todo/presentation/widgets/task_widget.dart';
 
@@ -56,12 +57,23 @@ class _UserScreenState extends State<UserScreen> {
           return true;
         },
         child: StreamBuilder<QuerySnapshot>(
-          stream: ,
+          stream: FirestoreDataSource().stream(),
           builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 5,
+                  backgroundColor: ColorsConst.grey,
+                  color: ColorsConst.purple,
+                ),
+              );
+            }
+            final notesList = FirestoreDataSource().getNotes(snapshot);
             return ListView.builder(
-              itemCount: 10,
-              itemBuilder: (builder, context) {
-                return const TaskWidget();
+              itemCount: notesList.length,
+              itemBuilder: (context, index) {
+                final notes = notesList[index];
+                return TaskWidget(note: notes);
               },
             );
           },

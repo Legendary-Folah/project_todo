@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:project_todo/constants/colors/colors.dart';
+import 'package:project_todo/model/note_model.dart';
 import 'package:project_todo/presentation/screen/edit_screen/edit_screen.dart';
 import 'package:project_todo/presentation/widgets/task_widget_tab.dart';
 
 class TaskWidget extends StatefulWidget {
-  const TaskWidget({super.key});
+  final Note note;
+  const TaskWidget({
+    super.key,
+    required this.note,
+  });
 
   @override
   State<TaskWidget> createState() => _TaskWidgetState();
@@ -61,9 +66,9 @@ class _TaskWidgetState extends State<TaskWidget> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            'ToDo',
-                            style: TextStyle(
+                          Text(
+                            widget.note.title!,
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: ColorsConst.black,
                               fontSize: 18,
@@ -84,7 +89,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'subtitle',
+                      widget.note.subTitle!,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey.shade400,
@@ -96,9 +101,9 @@ class _TaskWidgetState extends State<TaskWidget> {
                       children: [
                         GestureDetector(
                           onTap: () {},
-                          child: const TaskWidgetTab(
-                            text: 'Time',
-                            icon: Icon(
+                          child: TaskWidgetTab(
+                            text: widget.note.time!,
+                            icon: const Icon(
                               Icons.timelapse,
                               color: ColorsConst.white,
                             ),

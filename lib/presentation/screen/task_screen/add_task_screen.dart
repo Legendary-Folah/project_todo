@@ -39,91 +39,57 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               maxLines: 3,
             ),
             const SizedBox(height: 18),
-            SizedBox(
-              height: 140,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: "assets/images/".length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          indexx = index;
-                        });
-                      },
-                      child: Container(
-                        width: 160,
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: indexx == index
-                                ? ColorsConst.customGreen
-                                : ColorsConst.grey,
-                            width: 2.0,
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              "assets/images/$index.jpg",
-                            ),
-                          ],
-                        ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(
+                        ColorsConst.customGreen,
                       ),
-                    );
-                  }),
-            ),
-            const SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(
-                      ColorsConst.customGreen,
+                      minimumSize: WidgetStatePropertyAll(
+                        Size(150, 40),
+                      ),
                     ),
-                    minimumSize: WidgetStatePropertyAll(
-                      Size(165, 40),
-                    ),
-                  ),
-                  onPressed: () {
-                    FirestoreDataSource().addNote(
-                      titleController.text,
-                      subTitleController.text,
-                      indexx,
-                    );
-                    Navigator.of(context);
-                  },
-                  child: const Text(
-                    "Add Taskk",
-                    style: TextStyle(
-                      color: ColorsConst.white,
-                      fontSize: 18,
+                    onPressed: () {
+                      FirestoreDataSource().addNote(
+                        titleController.text,
+                        subTitleController.text,
+                      );
+                      Navigator.of(context);
+                    },
+                    child: const Text(
+                      "Add Task",
+                      style: TextStyle(
+                        color: ColorsConst.white,
+                        fontSize: 18,
+                      ),
                     ),
                   ),
-                ),
-                ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(
-                      ColorsConst.error,
+                  ElevatedButton(
+                    style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(
+                        ColorsConst.error,
+                      ),
+                      minimumSize: WidgetStatePropertyAll(
+                        Size(150, 40),
+                      ),
                     ),
-                    minimumSize: WidgetStatePropertyAll(
-                      Size(165, 40),
+                    onPressed: () {
+                      Navigator.of(context);
+                    },
+                    child: const Text(
+                      "Cancel",
+                      style: TextStyle(
+                        color: ColorsConst.white,
+                        fontSize: 18,
+                      ),
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.of(context);
-                  },
-                  child: const Text(
-                    "Cancel",
-                    style: TextStyle(
-                      color: ColorsConst.white,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             )
           ],
         ),

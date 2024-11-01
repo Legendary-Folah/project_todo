@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_todo/model/note_model.dart';
+import 'package:project_todo/presentation/widgets/flutter_toast.dart';
 import 'package:uuid/uuid.dart';
 
 class FirestoreDataSource {
@@ -21,7 +22,7 @@ class FirestoreDataSource {
     }
   }
 
-  Future<bool?> addNote(String title, String subTitle, int image) async {
+  Future<bool?> addNote(String title, String subTitle) async {
     try {
       final uuid = const Uuid().v4();
       final date = DateTime.now();
@@ -34,12 +35,12 @@ class FirestoreDataSource {
         'id': _auth.currentUser!.uid,
         'subtitle': subTitle,
         'isDOne': false,
-        'image': image,
-        'time': date,
+        'time': '${date.hour} : ${date.minute}',
         "title": title
       });
       return true;
     } catch (e) {
+      CustomFlutterToast.errorFlutterToast(e.toString());
       return true;
     }
   }
@@ -60,5 +61,13 @@ class FirestoreDataSource {
     } catch (e) {
       return [];
     }
+  }
+
+  Stream<QuerySnapshot> stream() {
+    return _firestore
+        .collection('users')
+        .doc(_auth.currentUser!.uid)
+        .collection('notes')
+        .snapshots();
   }
 }
