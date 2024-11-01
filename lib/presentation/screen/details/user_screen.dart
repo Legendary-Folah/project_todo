@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project_todo/constants/colors/colors.dart';
@@ -54,10 +55,15 @@ class _UserScreenState extends State<UserScreen> {
           }
           return true;
         },
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (builder, context) {
-            return const TaskWidget();
+        child: StreamBuilder<QuerySnapshot>(
+          stream: ,
+          builder: (context, snapshot) {
+            return ListView.builder(
+              itemCount: 10,
+              itemBuilder: (builder, context) {
+                return const TaskWidget();
+              },
+            );
           },
         ),
       ),

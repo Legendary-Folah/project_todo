@@ -45,9 +45,20 @@ class FirestoreDataSource {
   }
 
   List getNotes(AsyncSnapshot snapshot) {
-    final notesList = snapshot.data.docs.map((doc) {
-      final data = doc.data as Map<String, dynamic>;
-      return Note(id: id, image: image, subTitle: subTitle, time: time, title: title,),
-    });
+    try {
+      final notesList = snapshot.data.docs.map((doc) {
+        final data = doc.data as Map<String, dynamic>;
+        return Note(
+          id: data['id'],
+          subTitle: data['subtitle'],
+          time: data['time'],
+          title: data['title'],
+          image: data['image'],
+        );
+      }).toList();
+      return notesList;
+    } catch (e) {
+      return [];
+    }
   }
 }
