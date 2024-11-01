@@ -59,7 +59,8 @@ class _UserScreenState extends State<UserScreen> {
         child: StreamBuilder<QuerySnapshot>(
           stream: FirestoreDataSource().stream(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
+            print("Snapshot data: ${snapshot.data}");
+            if (!snapshot.hasData) {
               return const Center(
                 child: CircularProgressIndicator(
                   strokeWidth: 5,

@@ -22,7 +22,7 @@ class FirestoreDataSource {
     }
   }
 
-  Future<bool?> addNote(String title, String subTitle) async {
+  Future<bool> addNote(String title, String subTitle) async {
     try {
       final uuid = const Uuid().v4();
       final date = DateTime.now();
@@ -34,13 +34,13 @@ class FirestoreDataSource {
           .set({
         'id': _auth.currentUser!.uid,
         'subtitle': subTitle,
-        'isDOne': false,
+        'isDone': false,
         'time': '${date.hour} : ${date.minute}',
         "title": title
       });
       return true;
     } catch (e) {
-      CustomFlutterToast.errorFlutterToast(e.toString());
+      print('Error adding note: $e');
       return true;
     }
   }
@@ -48,17 +48,17 @@ class FirestoreDataSource {
   List getNotes(AsyncSnapshot snapshot) {
     try {
       final notesList = snapshot.data.docs.map((doc) {
-        final data = doc.data as Map<String, dynamic>;
+        final data = doc.data() as Map<String, dynamic>;
         return Note(
-          id: data['id'],
-          subTitle: data['subtitle'],
-          time: data['time'],
-          title: data['title'],
-          image: data['image'],
+          id: data['id'] ?? "",
+          subTitle: data['subtitle'] ?? "",
+          time: data['time'] ?? "",
+          title: data['title'] ?? "",
         );
       }).toList();
       return notesList;
     } catch (e) {
+      print('Error pasring notes: $e');
       return [];
     }
   }

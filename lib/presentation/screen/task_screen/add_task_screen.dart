@@ -21,6 +21,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       backgroundColor: Colors.grey.shade100,
       body: SafeArea(
         child: Column(
@@ -58,7 +59,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         titleController.text,
                         subTitleController.text,
                       );
-                      Navigator.of(context);
+                      Navigator.of(context).pop();
                     },
                     child: const Text(
                       "Add Task",
@@ -78,7 +79,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.of(context);
+                      Navigator.of(context).pop();
                     },
                     child: const Text(
                       "Cancel",
