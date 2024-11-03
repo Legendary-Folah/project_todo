@@ -35,7 +35,7 @@ class FirestoreDataSource {
         'id': _auth.currentUser!.uid,
         'subtitle': subTitle,
         'isDone': false,
-        'time': '${date.hour} : ${date.minute}',
+        'time': '${date.hour}:${date.minute} ${date.hour > 12 ? 'am' : 'pm'}',
         "title": title
       });
       return true;
@@ -54,6 +54,7 @@ class FirestoreDataSource {
           subTitle: data['subtitle'] ?? "",
           time: data['time'] ?? "",
           title: data['title'] ?? "",
+          isDone: data['isDone'],
         );
       }).toList();
       return notesList;
@@ -69,5 +70,20 @@ class FirestoreDataSource {
         .doc(_auth.currentUser!.uid)
         .collection('notes')
         .snapshots();
+  }
+
+  Future<bool> isDone(String uuid, bool isDone) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(_auth.currentUser!.uid)
+          .collection('notes')
+          .doc(uuid)
+          .update({'isDone': isDone});
+      return true;
+    } catch (e) {
+      print('Failed to update: $e');
+      return true;
+    }
   }
 }

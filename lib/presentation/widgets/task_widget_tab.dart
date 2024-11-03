@@ -17,7 +17,7 @@ class TaskWidgetTab extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
         height: 28,
-        width: 80,
+        width: 84,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
           color: ColorsConst.customGreen,

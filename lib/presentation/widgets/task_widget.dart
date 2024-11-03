@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:project_todo/constants/colors/colors.dart';
+import 'package:project_todo/firebase/firebase_service.dart';
 import 'package:project_todo/model/note_model.dart';
 import 'package:project_todo/presentation/screen/edit_screen/edit_screen.dart';
 import 'package:project_todo/presentation/widgets/task_widget_tab.dart';
@@ -17,9 +18,9 @@ class TaskWidget extends StatefulWidget {
 }
 
 class _TaskWidgetState extends State<TaskWidget> {
-  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
+    bool isChecked = widget.note.isDone;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -27,15 +28,16 @@ class _TaskWidgetState extends State<TaskWidget> {
           height: 120,
           width: double.infinity,
           decoration: BoxDecoration(
-              color: ColorsConst.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.3),
-                  spreadRadius: 7,
-                  blurRadius: 8,
-                )
-              ]),
+            color: ColorsConst.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 7,
+                blurRadius: 8,
+              )
+            ],
+          ),
           child: Row(
             children: [
               Padding(
@@ -82,6 +84,10 @@ class _TaskWidgetState extends State<TaskWidget> {
                               setState(() {
                                 isChecked = selected;
                               });
+                              FirestoreDataSource().isDone(
+                                widget.note.id!,
+                                isChecked,
+                              );
                             },
                           )
                         ],
@@ -106,6 +112,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                             icon: const Icon(
                               Icons.timelapse,
                               color: ColorsConst.white,
+                              size: 18,
                             ),
                           ),
                         ),
@@ -126,6 +133,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                             icon: Icon(
                               Icons.edit,
                               color: ColorsConst.white,
+                              size: 20,
                             ),
                           ),
                         )
