@@ -7,10 +7,10 @@ import 'package:project_todo/presentation/screen/edit_screen/edit_screen.dart';
 import 'package:project_todo/presentation/widgets/task_widget_tab.dart';
 
 class TaskWidget extends StatefulWidget {
-  final Note note;
+  final Note? note;
   const TaskWidget({
     super.key,
-    required this.note,
+    this.note,
   });
 
   @override
@@ -20,7 +20,7 @@ class TaskWidget extends StatefulWidget {
 class _TaskWidgetState extends State<TaskWidget> {
   @override
   Widget build(BuildContext context) {
-    bool isChecked = widget.note.isDone;
+    bool isChecked = widget.note!.isDone;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -41,8 +41,10 @@ class _TaskWidgetState extends State<TaskWidget> {
           child: Row(
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 10,
+                ),
                 child: Container(
                   height: 120,
                   width: 100,
@@ -69,7 +71,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            widget.note.title!,
+                            widget.note!.title!,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: ColorsConst.black,
@@ -77,15 +79,16 @@ class _TaskWidgetState extends State<TaskWidget> {
                             ),
                           ),
                           MSHCheckbox(
-                            size: 20,
+                            size: 30,
                             style: MSHCheckboxStyle.stroke,
                             value: isChecked,
-                            onChanged: (selected) {
+                            onChanged: (value) {
+                              print('checked');
                               setState(() {
-                                isChecked = selected;
+                                isChecked = !isChecked;
                               });
                               FirestoreDataSource().isDone(
-                                widget.note.id!,
+                                widget.note!.id!,
                                 isChecked,
                               );
                             },
@@ -95,7 +98,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      widget.note.subTitle!,
+                      widget.note!.subTitle!,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey.shade400,
@@ -108,7 +111,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                         GestureDetector(
                           onTap: () {},
                           child: TaskWidgetTab(
-                            text: widget.note.time!,
+                            text: widget.note!.time!,
                             icon: const Icon(
                               Icons.timelapse,
                               color: ColorsConst.white,

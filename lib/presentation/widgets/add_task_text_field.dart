@@ -6,7 +6,7 @@ class AddTaskTextField extends StatelessWidget {
     super.key,
     required this.controller,
     this.focusNode,
-    required this.text,
+    this.text,
     this.suffixIcon,
     required this.obscureText,
     this.maxLines,
@@ -14,7 +14,7 @@ class AddTaskTextField extends StatelessWidget {
 
   final TextEditingController controller;
   final FocusNode? focusNode;
-  final String text;
+  final String? text;
   final IconButton? suffixIcon;
   final bool obscureText;
   final int? maxLines;

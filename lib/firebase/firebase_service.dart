@@ -9,10 +9,13 @@ class FirestoreDataSource {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  String users = "users";
+  String notes = 'notes';
+
   Future<bool?> createUser(String email) async {
     try {
       await _firestore
-          .collection('users')
+          .collection(users)
           .doc(_auth.currentUser!.uid)
           .set({'id': _auth.currentUser!.uid, "email": email});
       print('Email: $email');
@@ -27,9 +30,9 @@ class FirestoreDataSource {
       final uuid = const Uuid().v4();
       final date = DateTime.now();
       await _firestore
-          .collection('users')
+          .collection(users)
           .doc(_auth.currentUser!.uid)
-          .collection('notes')
+          .collection(notes)
           .doc(uuid)
           .set({
         'id': _auth.currentUser!.uid,
@@ -54,7 +57,7 @@ class FirestoreDataSource {
           subTitle: data['subtitle'] ?? "",
           time: data['time'] ?? "",
           title: data['title'] ?? "",
-          isDone: data['isDone'],
+          isDone: data['isDone'] ?? "",
         );
       }).toList();
       return notesList;
@@ -66,18 +69,18 @@ class FirestoreDataSource {
 
   Stream<QuerySnapshot> stream() {
     return _firestore
-        .collection('users')
+        .collection(users)
         .doc(_auth.currentUser!.uid)
-        .collection('notes')
+        .collection(notes)
         .snapshots();
   }
 
   Future<bool> isDone(String uuid, bool isDone) async {
     try {
       await _firestore
-          .collection('users')
+          .collection(users)
           .doc(_auth.currentUser!.uid)
-          .collection('notes')
+          .collection(notes)
           .doc(uuid)
           .update({'isDone': isDone});
       return true;

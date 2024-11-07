@@ -3,7 +3,7 @@ class Note {
   String? title;
   String? subTitle;
   String? time;
-  final bool isDone;
+  bool isDone;
   Note({
     this.id,
     this.subTitle,
