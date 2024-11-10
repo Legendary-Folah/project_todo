@@ -89,4 +89,26 @@ class FirestoreDataSource {
       return true;
     }
   }
+
+  Future<bool> edit(
+      String uuid, bool isDone, String subTitle, String title) async {
+    try {
+      final date = DateTime.now();
+      await _firestore
+          .collection(users)
+          .doc(_auth.currentUser!.uid)
+          .collection(notes)
+          .doc(uuid)
+          .update({
+        'isDone': isDone,
+        'subtitle': subTitle,
+        'time': '${date.hour}:${date.minute} ${date.hour > 12 ? 'am' : 'pm'}',
+        "title": title
+      });
+      return true;
+    } catch (e) {
+      print('Failed to update: $e');
+      return true;
+    }
+  }
 }
