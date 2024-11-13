@@ -90,8 +90,7 @@ class FirestoreDataSource {
     }
   }
 
-  Future<bool> edit(
-      String uuid, bool isDone, String subTitle, String title) async {
+  Future<bool> edit(String uuid, String subTitle, String title) async {
     try {
       final date = DateTime.now();
       await _firestore
@@ -100,14 +99,13 @@ class FirestoreDataSource {
           .collection(notes)
           .doc(uuid)
           .update({
-        'isDone': isDone,
         'subtitle': subTitle,
         'time': '${date.hour}:${date.minute} ${date.hour > 12 ? 'am' : 'pm'}',
         "title": title
       });
       return true;
     } catch (e) {
-      print('Failed to update: $e');
+      print('Failed to update Tasks: $e');
       return true;
     }
   }
