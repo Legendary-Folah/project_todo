@@ -109,4 +109,19 @@ class FirestoreDataSource {
       return true;
     }
   }
+
+  Future<bool> deleteNote(String uuid) async {
+    try {
+      await _firestore
+          .collection(users)
+          .doc(_auth.currentUser!.uid)
+          .collection(notes)
+          .doc(uuid)
+          .delete();
+    } catch (e) {
+      print('Failed to delete Tasks: $e');
+      return true;
+    }
+    return true;
+  }
 }
