@@ -74,7 +74,14 @@ class _UserScreenState extends State<UserScreen> {
               itemCount: notesList.length,
               itemBuilder: (context, index) {
                 final notes = notesList[index];
-                return TaskWidget(note: notes);
+                return Dismissible(
+                  key: UniqueKey(),
+                  onDismissed: (direction) {
+                    print('Deleted ${notes.id}');
+                    FirestoreDataSource().deleteNote(notes.id);
+                  },
+                  child: TaskWidget(note: notes),
+                );
               },
             );
           },
