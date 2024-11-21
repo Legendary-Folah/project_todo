@@ -18,6 +18,7 @@ class TaskWidget extends StatefulWidget {
 }
 
 class _TaskWidgetState extends State<TaskWidget> {
+  // bool checked = false;
   @override
   Widget build(BuildContext context) {
     bool isChecked = widget.note!.isDone;
@@ -72,14 +73,21 @@ class _TaskWidgetState extends State<TaskWidget> {
                         children: [
                           Text(
                             widget.note!.title!,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
+                            style: TextStyle(
+                              fontWeight:
+                                  isChecked ? FontWeight.w500 : FontWeight.bold,
                               color: ColorsConst.black,
-                              fontSize: 18,
+                              fontSize: isChecked ? 16 : 18,
+                              fontStyle: isChecked
+                                  ? FontStyle.italic
+                                  : FontStyle.normal,
+                              decoration: isChecked
+                                  ? TextDecoration.lineThrough
+                                  : TextDecoration.none,
                             ),
                           ),
                           MSHCheckbox(
-                            size: 30,
+                            size: 26,
                             style: MSHCheckboxStyle.stroke,
                             value: isChecked,
                             onChanged: (value) {
@@ -100,9 +108,15 @@ class _TaskWidgetState extends State<TaskWidget> {
                     Text(
                       widget.note!.subTitle!,
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        fontWeight:
+                            isChecked ? FontWeight.w500 : FontWeight.bold,
                         color: Colors.grey.shade400,
-                        fontSize: 14,
+                        fontSize: isChecked ? 13 : 14,
+                        fontStyle:
+                            isChecked ? FontStyle.italic : FontStyle.normal,
+                        decoration: isChecked
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
                       ),
                     ),
                     const Spacer(),

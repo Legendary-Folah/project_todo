@@ -124,4 +124,12 @@ class FirestoreDataSource {
       return false;
     }
   }
+
+  Future<void> signout() async {
+    try {
+      await _auth.signOut();
+    } catch (e) {
+      print('Error signing out: $e');
+    }
+  }
 }

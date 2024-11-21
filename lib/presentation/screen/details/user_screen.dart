@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/firebase/firebase_service.dart';
+import 'package:project_todo/presentation/screen/home/home_page.dart';
 import 'package:project_todo/presentation/screen/task_screen/add_task_screen.dart';
 import 'package:project_todo/presentation/widgets/task_widget.dart';
 
@@ -20,6 +21,30 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: ColorsConst.purple,
+        actions: [
+          IconButton(
+            onPressed: () {
+              FirestoreDataSource().signout();
+              Future.delayed(const Duration(milliseconds: 2000), () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const MyHomePage();
+                    },
+                  ),
+                );
+              });
+            },
+            icon: const Icon(
+              Icons.logout,
+              color: ColorsConst.white,
+            ),
+          )
+        ],
+      ),
       backgroundColor: Colors.grey.shade100,
       floatingActionButton: Visibility(
         visible: show,
