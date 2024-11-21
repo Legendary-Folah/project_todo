@@ -126,7 +126,9 @@ class _TaskWidgetState extends State<TaskWidget> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return const EditScreen();
+                                  return EditScreen(
+                                    note: widget.note!,
+                                  );
                                 },
                               ),
                             );

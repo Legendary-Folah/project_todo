@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:project_todo/constants/colors/colors.dart';
+import 'package:project_todo/firebase/firebase_service.dart';
 import 'package:project_todo/model/note_model.dart';
 import 'package:project_todo/presentation/widgets/add_task_text_field.dart';
 
 class EditScreen extends StatefulWidget {
-  const EditScreen({
+  EditScreen({
     super.key,
-    this.note,
+    required this.note,
   });
-  final Note? note;
+  Note note;
 
   @override
   State<EditScreen> createState() => _AddTaskScreenState();
@@ -26,8 +27,8 @@ class _AddTaskScreenState extends State<EditScreen> {
   @override
   void initState() {
     super.initState();
-    title = TextEditingController(text: widget.note?.title);
-    subTitle = TextEditingController(text: widget.note?.subTitle);
+    title = TextEditingController(text: widget.note.title);
+    subTitle = TextEditingController(text: widget.note.subTitle);
   }
 
   Widget build(BuildContext context) {
@@ -68,7 +69,12 @@ class _AddTaskScreenState extends State<EditScreen> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.of(context);
+                    FirestoreDataSource().edit(
+                      widget.note.id!,
+                      subTitle!.text,
+                      title!.text,
+                    );
+                    Navigator.pop(context);
                   },
                   child: const Text(
                     "Update",
@@ -88,7 +94,7 @@ class _AddTaskScreenState extends State<EditScreen> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.of(context);
+                    Navigator.pop(context);
                   },
                   child: const Text(
                     "Cancel",

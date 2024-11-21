@@ -17,7 +17,7 @@ class FirestoreDataSource {
           .collection(users)
           .doc(_auth.currentUser!.uid)
           .set({'id': _auth.currentUser!.uid, "email": email});
-      print('Email: $email');
+      print('Email: $email , id: ${_auth.currentUser!.uid}');
       return true;
     } catch (e) {
       return true;
@@ -52,7 +52,7 @@ class FirestoreDataSource {
       final notesList = snapshot.data.docs.map((doc) {
         final data = doc.data() as Map<String, dynamic>;
         return Note(
-          id: data['id'] ?? "",
+          id: doc.id,
           subTitle: data['subtitle'] ?? "",
           time: data['time'] ?? "",
           title: data['title'] ?? "",
@@ -116,15 +116,11 @@ class FirestoreDataSource {
           .doc(_auth.currentUser!.uid)
           .collection(notes)
           .doc(uuid)
-          .delete()
-          .whenComplete(() {
-        print('Data has been removed');
-      });
+          .delete();
       print('Note deleted successfully');
       return true;
     } catch (e) {
       print('Failed to delete Tasks: $e');
-      print('Failed to delete note: $e');
       return false;
     }
   }
