@@ -59,7 +59,7 @@ class _UserScreenState extends State<UserScreen> {
         child: StreamBuilder<QuerySnapshot>(
           stream: FirestoreDataSource().stream(),
           builder: (context, snapshot) {
-            print("Snapshot data: ${snapshot.data}");
+            // print("Snapshot data: ${snapshot.data}");
             if (!snapshot.hasData) {
               return const Center(
                 child: CircularProgressIndicator(
@@ -77,7 +77,7 @@ class _UserScreenState extends State<UserScreen> {
                 return Dismissible(
                   key: UniqueKey(),
                   onDismissed: (direction) {
-                    print('Deleted ${notes.id}');
+                    print('Deleted ${notes.title}');
                     FirestoreDataSource().deleteNote(notes.id);
                   },
                   child: TaskWidget(note: notes),

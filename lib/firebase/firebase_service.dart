@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_todo/model/note_model.dart';
-import 'package:project_todo/presentation/widgets/flutter_toast.dart';
 import 'package:uuid/uuid.dart';
 
 class FirestoreDataSource {
@@ -35,10 +34,10 @@ class FirestoreDataSource {
           .collection(notes)
           .doc(uuid)
           .set({
-        'id': _auth.currentUser!.uid,
+        'id': uuid,
         'subtitle': subTitle,
         'isDone': false,
-        'time': '${date.hour}:${date.minute} ${date.hour > 12 ? 'am' : 'pm'}',
+        'time': '${date.hour}:${date.minute} ${date.hour > 12 ? 'pm' : 'am'}',
         "title": title
       });
       return true;
@@ -62,7 +61,7 @@ class FirestoreDataSource {
       }).toList();
       return notesList;
     } catch (e) {
-      print('Error pasring notes: $e');
+      print('Error parsing notes: $e');
       return [];
     }
   }
@@ -117,11 +116,16 @@ class FirestoreDataSource {
           .doc(_auth.currentUser!.uid)
           .collection(notes)
           .doc(uuid)
-          .delete();
+          .delete()
+          .whenComplete(() {
+        print('Data has been removed');
+      });
+      print('Note deleted successfully');
+      return true;
     } catch (e) {
       print('Failed to delete Tasks: $e');
-      return true;
+      print('Failed to delete note: $e');
+      return false;
     }
-    return true;
   }
 }
