@@ -132,4 +132,12 @@ class FirestoreDataSource {
       print('Error signing out: $e');
     }
   }
+
+  Future<void> resetPassword(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      print('Error sending reset password email : $e');
+    }
+  }
 }

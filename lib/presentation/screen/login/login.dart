@@ -95,7 +95,7 @@ class _LoginState extends State<Login> {
                     return FormValidations.validateEmailField(value);
                   },
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 25),
                 CustomTextField(
                   controller: passwordController,
                   focusNode: focusNode2,
@@ -119,7 +119,42 @@ class _LoginState extends State<Login> {
                     return FormValidations.validateRequiredField(value);
                   },
                 ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text(
+                        "Forgot password?",
+                        style: TextStyle(
+                          color: ColorsConst.black,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(width: 3),
+                      GestureDetector(
+                        onTap: widget.showAuth,
+                        child: const Text(
+                          'Reset',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: ColorsConst.purple,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 const SizedBox(height: 20),
+                LoginSignUpButton(
+                  text: 'Login',
+                  onPressed: () {
+                    _submitForm();
+                  },
+                ),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
@@ -146,13 +181,6 @@ class _LoginState extends State<Login> {
                       )
                     ],
                   ),
-                ),
-                const SizedBox(height: 20),
-                LoginSignUpButton(
-                  text: 'Login',
-                  onPressed: () {
-                    _submitForm();
-                  },
                 ),
               ],
             ),
