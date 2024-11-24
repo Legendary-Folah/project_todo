@@ -140,4 +140,17 @@ class FirestoreDataSource {
       print('Error sending reset password email : $e');
     }
   }
+
+  Future<bool> checkIfEmailExists(String email) async {
+    try {
+      final querySnapshot = await _firestore
+          .collection(users)
+          .where("email", isEqualTo: email)
+          .get();
+      return querySnapshot.docs.isNotEmpty;
+    } catch (e) {
+      print('Error checking email existence: $e');
+      return false;
+    }
+  }
 }

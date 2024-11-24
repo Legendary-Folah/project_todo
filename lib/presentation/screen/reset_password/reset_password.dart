@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/constants/validation/form_validations.dart';
 import 'package:project_todo/firebase/firebase_service.dart';
-import 'package:project_todo/presentation/screen/details/user_screen.dart';
-import 'package:project_todo/presentation/screen/login/login.dart';
 import 'package:project_todo/presentation/widgets/custom_text_field.dart';
+import 'package:project_todo/presentation/widgets/flutter_toast.dart';
 import 'package:project_todo/presentation/widgets/login_signup_button.dart';
 
 class ResetPassword extends StatefulWidget {
@@ -62,7 +61,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 LoginSignUpButton(
                   text: 'Reset Password',
                   onPressed: () {
-                    _submitForm();
+                    _resetPassword();
                   },
                 ),
               ],
@@ -73,15 +72,27 @@ class _ResetPasswordState extends State<ResetPassword> {
     );
   }
 
-  void _submitForm() {
-    if (formKey.currentState?.validate() ?? false) {
-      FirestoreDataSource().resetPassword(resetPasswordController.text);
-      Future.delayed(
-        const Duration(milliseconds: 1500),
-        () {
-          Navigator.pop(context);
-        },
-      );
+  void _resetPassword() async {
+    try {
+      if (formKey.currentState?.validate() ?? false) {
+        final email = resetPasswordController.text;
+        final emailExists =
+            await FirestoreDataSource().checkIfEmailExists(email);
+        if (emailExists) {
+          await FirestoreDataSource().resetPassword(email);
+          CustomFlutterToast.successFlutterToast('Reset link sent to $email');
+          Future.delayed(
+            const Duration(milliseconds: 1500),
+            () {
+              Navigator.pop(context);
+            },
+          );
+        } else {
+          CustomFlutterToast.errorFlutterToast('Email does not exist');
+        }
+      }
+    } catch (e) {
+      print('Error sending reset password link: $e');
     }
   }
 }
