@@ -48,6 +48,10 @@ class FirestoreDataSource {
   }
 
   List getNotes(AsyncSnapshot snapshot) {
+    if (snapshot.data == null) {
+      print('No data found');
+      return [];
+    }
     try {
       final notesList = snapshot.data.docs.map((doc) {
         final data = doc.data() as Map<String, dynamic>;
@@ -67,6 +71,10 @@ class FirestoreDataSource {
   }
 
   Stream<QuerySnapshot> stream() {
+    // if (_auth.currentUser == null) {
+    //   print("No authenticated user found");
+    //   return const Stream.empty();
+    // }
     return _firestore
         .collection(users)
         .doc(_auth.currentUser!.uid)

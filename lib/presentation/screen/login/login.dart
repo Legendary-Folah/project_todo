@@ -208,14 +208,21 @@ class _LoginState extends State<Login> {
         emailController.text,
         passwordController.text,
       );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const UserScreen();
-          },
-        ),
+      Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const UserScreen();
+              },
+            ),
+          );
+        },
       );
+    } else {
+      print('Invalid login details');
     }
   }
 }

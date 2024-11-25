@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:project_todo/auth/auth.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/firebase/firebase_service.dart';
 import 'package:project_todo/presentation/screen/home/home_page.dart';
@@ -32,7 +33,7 @@ class _UserScreenState extends State<UserScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return const MyHomePage();
+                      return const AuthPage();
                     },
                   ),
                 );

@@ -37,34 +37,37 @@ class _ResetPasswordState extends State<ResetPassword> {
         backgroundColor: ColorsConst.purple,
       ),
       body: SafeArea(
-        child: Form(
-          key: formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CustomTextField(
-                  controller: resetPasswordController,
-                  focusNode: focusNode,
-                  keyboardType: TextInputType.emailAddress,
-                  icon: Icon(Icons.email,
-                      color: focusNode.hasFocus
-                          ? ColorsConst.purple
-                          : ColorsConst.grey),
-                  text: 'please input email address...',
-                  obscureText: false,
-                  validator: (value) {
-                    return FormValidations.validateEmailField(value);
-                  },
-                ),
-                LoginSignUpButton(
-                  text: 'Reset Password',
-                  onPressed: () {
-                    _resetPassword();
-                  },
-                ),
-              ],
+        child: Center(
+          child: Form(
+            key: formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CustomTextField(
+                    controller: resetPasswordController,
+                    focusNode: focusNode,
+                    keyboardType: TextInputType.emailAddress,
+                    icon: Icon(Icons.email,
+                        color: focusNode.hasFocus
+                            ? ColorsConst.purple
+                            : ColorsConst.grey),
+                    text: 'please input email address...',
+                    obscureText: false,
+                    validator: (value) {
+                      return FormValidations.validateEmailField(value);
+                    },
+                  ),
+                  const SizedBox(height: 15),
+                  LoginSignUpButton(
+                    text: 'Reset Password',
+                    onPressed: () {
+                      _resetPassword();
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
