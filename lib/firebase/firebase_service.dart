@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project_todo/model/note_model.dart';
+import 'package:project_todo/model/note.dart';
 import 'package:uuid/uuid.dart';
 
 class FirestoreDataSource {
@@ -24,29 +24,6 @@ class FirestoreDataSource {
     }
   }
 
-  Future<bool> addNote(String title, String subTitle) async {
-    try {
-      final uuid = const Uuid().v4();
-      final date = DateTime.now();
-      await _firestore
-          .collection(users)
-          .doc(_auth.currentUser!.uid)
-          .collection(notes)
-          .doc(uuid)
-          .set({
-        'id': uuid,
-        'subtitle': subTitle,
-        'isDone': false,
-        'time': '${date.hour}:${date.minute} ${date.hour > 12 ? 'pm' : 'am'}',
-        "title": title
-      });
-      return true;
-    } catch (e) {
-      print('Error adding note: $e');
-      return true;
-    }
-  }
-
   List getNotes(AsyncSnapshot snapshot) {
     if (snapshot.data == null) {
       print('No data found');
@@ -57,10 +34,10 @@ class FirestoreDataSource {
         final data = doc.data() as Map<String, dynamic>;
         return Note(
           id: doc.id,
-          subTitle: data['subtitle'] ?? "",
+          subTitle: data['subTitle'] ?? "",
           time: data['time'] ?? "",
           title: data['title'] ?? "",
-          isDone: data['isDone'] ?? "",
+          isDone: data['isDone'] ?? false,
         );
       }).toList();
       return notesList;
@@ -114,22 +91,6 @@ class FirestoreDataSource {
     } catch (e) {
       print('Failed to update Tasks: $e');
       return true;
-    }
-  }
-
-  Future<bool> deleteNote(String uuid) async {
-    try {
-      await _firestore
-          .collection(users)
-          .doc(_auth.currentUser!.uid)
-          .collection(notes)
-          .doc(uuid)
-          .delete();
-      print('Note deleted successfully');
-      return true;
-    } catch (e) {
-      print('Failed to delete Tasks: $e');
-      return false;
     }
   }
 

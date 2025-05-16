@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_todo/constants/colors/colors.dart';
-import 'package:project_todo/firebase/firebase_service.dart';
+import 'package:project_todo/logic/todo_provider.dart';
 import 'package:project_todo/presentation/widgets/add_task_text_field.dart';
 
-class AddTaskScreen extends StatefulWidget {
+class AddTaskScreen extends ConsumerStatefulWidget {
   const AddTaskScreen({super.key});
 
   @override
-  State<AddTaskScreen> createState() => _AddTaskScreenState();
+  ConsumerState<AddTaskScreen> createState() => _AddTaskScreenState();
 }
 
-class _AddTaskScreenState extends State<AddTaskScreen> {
+class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
   final titleController = TextEditingController();
   final subTitleController = TextEditingController();
 
@@ -20,6 +21,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   int indexx = 0;
   @override
   Widget build(BuildContext context) {
+    final note = ref.watch(noteProvider);
     return Scaffold(
       appBar: AppBar(),
       backgroundColor: Colors.grey.shade100,
@@ -37,7 +39,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               controller: subTitleController,
               text: 'SubTitle',
               obscureText: false,
-              maxLines: 3,
+              maxLines: 4,
             ),
             const SizedBox(height: 18),
             Padding(
@@ -55,10 +57,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       ),
                     ),
                     onPressed: () {
-                      FirestoreDataSource().addNote(
-                        titleController.text,
-                        subTitleController.text,
-                      );
+                      ref.read(noteProvider.notifier).addNote(
+                            titleController.text,
+                            subTitleController.text,
+                          );
+                      print('Note Added successfully ${titleController.text}');
                       Navigator.of(context).pop();
                     },
                     child: const Text(

@@ -1,23 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_todo/auth/auth.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/firebase/firebase_service.dart';
-import 'package:project_todo/presentation/screen/home/home_page.dart';
+import 'package:project_todo/logic/todo_provider.dart';
 import 'package:project_todo/presentation/screen/task_screen/add_task_screen.dart';
 import 'package:project_todo/presentation/widgets/task_widget.dart';
 
-class UserScreen extends StatefulWidget {
+class UserScreen extends ConsumerStatefulWidget {
   const UserScreen({
     super.key,
   });
 
   @override
-  State<UserScreen> createState() => _UserScreenState();
+  ConsumerState<UserScreen> createState() => _UserScreenState();
 }
 
-class _UserScreenState extends State<UserScreen> {
+class _UserScreenState extends ConsumerState<UserScreen> {
   bool show = true;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class _UserScreenState extends State<UserScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              FirestoreDataSource().signout();
+              ref.read(noteProvider.notifier).signout();
               Future.delayed(const Duration(milliseconds: 2000), () {
                 Navigator.pushReplacement(
                   context,
@@ -85,7 +86,6 @@ class _UserScreenState extends State<UserScreen> {
         child: StreamBuilder<QuerySnapshot>(
           stream: FirestoreDataSource().stream(),
           builder: (context, snapshot) {
-            // print("Snapshot data: ${snapshot.data}");
             if (!snapshot.hasData) {
               return const Center(
                 child: CircularProgressIndicator(
@@ -104,7 +104,7 @@ class _UserScreenState extends State<UserScreen> {
                   key: UniqueKey(),
                   onDismissed: (direction) {
                     print('Deleted ${notes.title}');
-                    FirestoreDataSource().deleteNote(notes.id);
+                    ref.read(noteProvider.notifier).deleteNote(notes.id);
                   },
                   child: TaskWidget(note: notes),
                 );

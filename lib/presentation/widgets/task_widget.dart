@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/firebase/firebase_service.dart';
-import 'package:project_todo/model/note_model.dart';
+import 'package:project_todo/model/note.dart';
 import 'package:project_todo/presentation/screen/edit_screen/edit_screen.dart';
 import 'package:project_todo/presentation/widgets/task_widget_tab.dart';
 
@@ -21,7 +21,7 @@ class _TaskWidgetState extends State<TaskWidget> {
   // bool checked = false;
   @override
   Widget build(BuildContext context) {
-    bool isChecked = widget.note!.isDone;
+    bool isChecked = widget.note!.isDone!;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -43,12 +43,12 @@ class _TaskWidgetState extends State<TaskWidget> {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 10,
+                  horizontal: 5,
+                  vertical: 5,
                 ),
                 child: Container(
-                  height: 120,
-                  width: 100,
+                  height: 100,
+                  width: 80,
                   decoration: const BoxDecoration(
                     color: ColorsConst.purple,
                     image: DecorationImage(
@@ -65,9 +65,9 @@ class _TaskWidgetState extends State<TaskWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.only(right: 30),
+                      padding: const EdgeInsets.only(right: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -119,7 +119,8 @@ class _TaskWidgetState extends State<TaskWidget> {
                             : TextDecoration.none,
                       ),
                     ),
-                    const Spacer(),
+                    // const Spacer(),
+                    const SizedBox(height: 5),
                     Row(
                       children: [
                         GestureDetector(

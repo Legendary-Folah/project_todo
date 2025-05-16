@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_todo/auth/auth.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/constants/string_const/string_const.dart';
@@ -14,8 +15,10 @@ void main() async {
   // await dotenv.load();
   final prefs = await SharedPreferences.getInstance();
   final onboarding = prefs.getBool(StringConst.onboardingKey) ?? false;
-  runApp(MyApp(
-    onboarding: onboarding,
+  runApp(ProviderScope(
+    child: MyApp(
+      onboarding: onboarding,
+    ),
   ));
 }
 

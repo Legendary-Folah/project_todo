@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_todo/constants/colors/colors.dart';
 import 'package:project_todo/firebase/firebase_service.dart';
-import 'package:project_todo/model/note_model.dart';
+import 'package:project_todo/model/note.dart';
 import 'package:project_todo/presentation/widgets/add_task_text_field.dart';
 
-class EditScreen extends StatefulWidget {
+class EditScreen extends ConsumerStatefulWidget {
   EditScreen({
     super.key,
     required this.note,
@@ -12,10 +13,10 @@ class EditScreen extends StatefulWidget {
   Note note;
 
   @override
-  State<EditScreen> createState() => _AddTaskScreenState();
+  ConsumerState<EditScreen> createState() => _AddTaskScreenState();
 }
 
-class _AddTaskScreenState extends State<EditScreen> {
+class _AddTaskScreenState extends ConsumerState<EditScreen> {
   TextEditingController? title;
   TextEditingController? subTitle;
 
