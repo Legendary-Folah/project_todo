@@ -156,7 +156,6 @@ class _SignUpState extends State<SignUp> {
                     String? requiredFieldError =
                         FormValidations.validateRequiredField(value);
                     if (requiredFieldError != null) return requiredFieldError;
-
                     return FormValidations.validatePasswordMatch(
                         value, passwordController.text);
                   },
