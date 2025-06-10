@@ -9,7 +9,7 @@ class FirestoreDataSource {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   String users = "users";
-  String notes = 'notes';
+  String notes = "notes";
 
   Future<bool?> createUser(String email) async {
     try {
