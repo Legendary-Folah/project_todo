@@ -58,8 +58,8 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                     ),
                     onPressed: () {
                       ref.read(noteProvider.notifier).addNote(
-                            titleController.text,
-                            subTitleController.text,
+                            titleController.text.trim(),
+                            subTitleController.text.trim(),
                           );
                       print('Note Added successfully ${titleController.text}');
                       Navigator.of(context).pop();
